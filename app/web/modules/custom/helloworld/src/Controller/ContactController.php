@@ -99,7 +99,7 @@ class ContactController extends ControllerBase {
         if ($request->isMethod('POST')) {
             // POSTされたデータを取得
             $posts = $request->request->all();
-    
+           
             // 各フィールドの値を変数に割り当て
             $name = $posts['name'] ?? null;
             $email = $posts['email'] ?? null;
@@ -149,8 +149,6 @@ class ContactController extends ControllerBase {
     
                 // 更新完了のメッセージをユーザーに表示
                 Drupal::messenger()->addMessage($this->t('更新完了しました。'));
-                // ページキャッシュを無効化
-                Drupal::service('page_cache_kill_switch')->trigger();
         
                 // 更新後のページへリダイレクト
                 return new RedirectResponse('/test/contact/display');
