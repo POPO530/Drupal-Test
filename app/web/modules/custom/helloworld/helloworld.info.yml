@@ -1,0 +1,4 @@
+name: HelloWorld                   # モジュールの名前。Drupalシステム内でこのモジュールを識別するために使用されます。
+type: module                       # このファイルがモジュールの情報を定義していることを示します。他にはテーマやプロファイルがあります。
+description: 'This is your first module.'  # モジュールの簡単な説明。管理画面でモジュールを一覧表示する際にこの説明が表示されます。
+core_version_requirement: ^9 || ^10  # このモジュールが動作するDrupalのコアバージョンを指定します。ここではDrupal 9と10の両方に対応していることを示しています。

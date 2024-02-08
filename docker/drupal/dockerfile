@@ -1,0 +1,9 @@
+FROM drupal:9.5.11-php8.1-fpm-bullseye
+
+RUN apt-get update -y
+
+RUN apt install vim -y
+
+RUN rm -rf /var/www/html
+
+WORKDIR /var/www/html

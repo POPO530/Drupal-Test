@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * このファイルには、helloworld モジュールのインストール、アップデート、アンインストール時に実行される関数が含まれています。
+ */
+
+/**
+ * hook_schema() の実装。
+ *
+ * この関数は、helloworld モジュール用のカスタムデータベーステーブルのスキーマを定義します。
+ * このテーブルは、お問い合わせフォームから送信されたデータを格納するために使用されます。
+ *
+ * @return array
+ *   データベーススキーマの定義を含む配列。
+ */
+function helloworld_schema() {
+  // helloworld_contact テーブルの定義。
+  $schema['helloworld_contact'] = [
+    // テーブルの説明。
+    'description' => 'Stores contact form submissions from the helloworld module.',
+
+    // テーブルのフィールド定義。
+    'fields' => [
+      // 送信ID。各送信にユニークな識別子。
+      'id' => [
+        'description' => 'The primary identifier for each submission.',
+        'type' => 'serial',  // 自動インクリメントの整数。
+        'unsigned' => TRUE,  // 符号なし（負の数を許容しない）。
+        'not null' => TRUE,  // NULL値を許容しない。
+      ],
+      // 送信者の名前。
+      'name' => [
+        'description' => 'Name of the person submitting the contact form.',
+        'type' => 'varchar',  // 可変長文字列。
+        'length' => 255,      // 最大文字長は255。
+        'not null' => TRUE,   // NULL値を許容しない。
+      ],
+      // 送信者のメールアドレス。
+      'email' => [
+        'description' => 'Email address of the person submitting the contact form.',
+        'type' => 'varchar',  // 可変長文字列。
+        'length' => 255,      // 最大文字長は255。
+        'not null' => TRUE,   // NULL値を許容しない。
+      ],
+      // 送信されたメッセージ。
+      'message' => [
+        'description' => 'The message content submitted through the contact form.',
+        'type' => 'text',    // テキスト型（長い文字列）。
+        'not null' => TRUE,  // NULL値を許容しない。
+      ],
+    ],
+
+    // プライマリキーの定義。
+    'primary key' => ['id'],
+  ];
+
+  $schema['helloworld_dice'] = [
+      // テーブルの説明。
+      'description' => 'Stores results of dice game submissions from the helloworld module.',
+
+      // テーブルのフィールド定義。
+      'fields' => [
+        // 送信ID。各送信にユニークな識別子。
+        'id' => [
+          'description' => 'The primary identifier for each submission.',
+          'type' => 'serial',  // 自動インクリメントの整数。
+          'unsigned' => TRUE,  // 符号なし（負の数を許容しない）。
+          'not null' => TRUE,  // NULL値を許容しない。
+        ],
+        // 正解
+        'correct_answer' => [
+          'description' => 'Indicates whether the answer was correct or not.',
+          'type' => 'int',  // 整数型。
+          'not null' => FALSE,  // NULL値を許容する。
+        ],
+        // 不正解
+        'incorrect_answer' => [
+          'description' => 'Indicates the number of incorrect answers.',
+          'type' => 'int',  // 整数型。
+          'not null' => FALSE,  // NULL値を許容する。
+        ],
+      ],
+
+      // プライマリキーの定義。
+      'primary key' => ['id'],
+  ];
+
+  $schema['helloworld_contact2'] = [
+    'description' => 'Stores contact form submissions from the helloworld module.',
+
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for each submission.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Name of the person submitting the contact form.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'description' => 'Email address of the person submitting the contact form.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'phone' => [
+        'description' => 'Phone number of the person submitting the contact form.', // 修正された説明
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'message' => [
+        'description' => 'The message content submitted through the contact form.',
+        'type' => 'text',
+        'not null' => TRUE,
+      ],
+    ],
+
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}

@@ -1,0 +1,24 @@
+.site-header {
+  background-color: #ff0000; /* 明るい赤 */
+  padding: 20px;
+  text-align: left;
+}
+
+.site-content {
+  background-color: #002fff; /* 暗い青 */
+  padding: 20px;
+}
+
+.site-footer {
+  background-color: #66ff00; /* 薄い緑 */
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+/* レスポンシブデザイン用の追加スタイル */
+@media (max-width: 600px) {
+  .site-header, .site-content, .site-footer {
+    padding: 10px;
+  }
+}

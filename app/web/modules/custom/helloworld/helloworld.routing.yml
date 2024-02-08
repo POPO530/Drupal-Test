@@ -1,0 +1,61 @@
+# Drupalモジュールのルーティング設定ファイル。
+# このファイルは特定のURLにアクセスされた際に、対応するコントローラの関数やメソッドにリクエストをマッピングします。
+
+# '/contact' パスへのルーティング定義。
+# この設定により、ユーザーが '/contact' パスにアクセスすると、
+# ContactController クラスの index メソッドが実行され、「お問い合わせ」というタイトルのページが表示されます。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
+helloworld.contact:
+  path: '/test/contact'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\ContactController::index'
+    _title: 'お問い合わせ'
+  requirements:
+    _permission: 'access content'
+
+# '/dice' パスへのルーティング定義。
+# この設定により、ユーザーが '/dice' パスにアクセスすると、
+# DiceForm フォームが表示され、「さいころ当てゲーム」というタイトルのページが表示されます。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
+helloworld.dice_form:
+  path: '/dice'
+  defaults:
+    _form: '\Drupal\helloworld\Form\DiceForm'
+    _title: 'さいころ当てゲーム'
+  requirements:
+    _permission: 'access content'
+
+# '/hello' パスへのルーティング定義。
+# この設定により、ユーザーが '/hello' パスにアクセスすると、
+# HelloController クラスの content メソッドが実行されます。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
+helloworld.hello:
+  path: '/hello'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\HelloController::content'
+  requirements:
+    _permission: 'access content'
+
+# '/hello/contact' パスへのルーティング定義。
+# この設定により、ユーザーが '/hello/contact' パスにアクセスすると、
+# ContactForm クラスによるお問い合わせフォームが表示されます。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
+helloworld.contact_form:
+  path: '/hello/contact'
+  defaults:
+    _form: '\Drupal\helloworld\Form\ContactForm'
+    _title: 'お問い合わせ'
+  requirements:
+    _permission: 'access content'
+
+# '/hello/submissions' パスへのルーティング定義。
+# この設定により、ユーザーが '/hello/submissions' パスにアクセスすると、
+# HelloController クラスの showSubmissions メソッドが実行され、送信されたデータの一覧が表示されます。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
+helloworld.submissions:
+  path: '/hello/submissions'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\HelloController::showSubmissions'
+    _title: 'Submission List'
+  requirements:
+    _permission: 'access content'
