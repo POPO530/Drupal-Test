@@ -1,0 +1,25 @@
+{% if contact is not empty %}
+    <form action="/test/contact/edit/{{ contact.id }}" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="name" value="{{ contact.name }}"></td>
+                    <td><input type="email" name="email" value="{{ contact.email }}"></td>
+                    <td><input type="text" name="phone" value="{{ contact.phone }}"></td>
+                    <td><textarea name="message">{{ contact.message }}</textarea></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Update">
+    </form>
+{% else %}
+    <p>No contact found.</p>
+{% endif %}

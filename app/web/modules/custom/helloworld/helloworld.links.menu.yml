@@ -1,4 +1,12 @@
-# 'HelloWorld Example' メニューリンク定義。
+# 'お問い合わせ2確認' メニューリンク定義。
+helloworld.contact_display:
+  title: 'お問い合わせ2確認'  # メニューリンクのタイトル。
+  route_name: helloworld.contact_display  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。
+  parent: system.admin_structure  # このリンクが属する親メニュー項目。
+  description: "新しいお問い合わせ確認"  # リンクの説明。
+  expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうか
+
+# 'お問い合わせ2' メニューリンク定義。
 helloworld.contact:
   title: 'お問い合わせ2'  # メニューリンクのタイトル。
   route_name: helloworld.contact  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。

@@ -5,7 +5,7 @@
  * HelloWorldモジュールの主要なファイル。
  *
  * このファイルは、HelloWorldモジュールの主要な機能とフック実装を含んでいます。
- * Drupal内で特定のURLに対してカスタムページを表示する方法を実装する例を提供します。
+ * Drupal内でカスタムページを表示し、特定の機能を提供する方法を実装する例を提供します。
  */
 
 /**
@@ -14,15 +14,14 @@
  * @{
  * このドキュメンテーショングループは、HelloWorldモジュールの使用例を示しています。
  * Drupal内でカスタムページを表示する方法やカスタムテーマフックの実装例を提供します。
- * メニューシステムの理解を深めるため、Menu Exampleモジュールの使用も推奨されます。
- * @see menu_example
+ * これは、Drupal内でカスタムモジュールを作成する際の基本的なパターンを示しています。
  */
 
 /**
  * hook_theme()の実装。
  *
- * 'my-template' テーマフックを定義し、'test_var' 変数を受け取ります。
- * この変数は、テンプレート内で使用可能です。
+ * この関数は、モジュールで使用される複数のテーマフックを定義します。
+ * 各テーマフックは、特定のテンプレートと関連付けられ、変数をテンプレートに渡すことができます。
  */
 function helloworld_theme($existing, $type, $theme, $path) {
   return [
@@ -31,6 +30,12 @@ function helloworld_theme($existing, $type, $theme, $path) {
     ],
     'contact-template' => [
       'variables' => ['vars' => NULL],
+    ],
+    'contact-display-template' => [
+      'variables' => ['contacts' => NULL],
+    ],
+    'contact-edit-template' => [
+      'variables' => ['contact' => NULL],
     ],
   ];
 }

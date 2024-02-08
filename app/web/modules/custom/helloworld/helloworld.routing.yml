@@ -1,21 +1,48 @@
 # Drupalモジュールのルーティング設定ファイル。
-# このファイルは特定のURLにアクセスされた際に、対応するコントローラの関数やメソッドにリクエストをマッピングします。
+# このファイルは、特定のURLにアクセスされた際に、対応するコントローラの関数やメソッドにリクエストをマッピングします。
 
-# '/contact' パスへのルーティング定義。
-# この設定により、ユーザーが '/contact' パスにアクセスすると、
-# ContactController クラスの index メソッドが実行され、「お問い合わせ」というタイトルのページが表示されます。
+# '/test/contact/delete/{contact_id}' パスへのルーティング定義。
+# ContactController クラスの delete メソッドを実行し、指定されたコンタクトの削除を行います。
+# アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。
+helloworld.contact_delete:
+  path: '/test/contact/delete/{contact_id}'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\ContactController::delete'
+  requirements:
+    _permission: 'administer site configuration'
+
+# '/test/contact/edit/{contact_id}' パスへのルーティング定義。
+# ContactController クラスの edit メソッドを実行し、指定されたコンタクトの編集を行います。
+# アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。
+helloworld.contact_edit:
+  path: '/test/contact/edit/{contact_id}'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\ContactController::edit'
+  requirements:
+    _permission: 'administer site configuration'
+
+# '/test/contact/display' パスへのルーティング定義。
+# ContactController クラスの display メソッドを実行し、全てのコンタクト情報の表示を行います。
+# アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。
+helloworld.contact_display:
+  path: '/test/contact/display'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\ContactController::display'
+  requirements:
+    _permission: 'administer site configuration'
+
+# '/test/contact' パスへのルーティング定義。
+# ContactController クラスの index メソッドを実行し、お問い合わせページを表示します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.contact:
   path: '/test/contact'
   defaults:
     _controller: '\Drupal\helloworld\Controller\ContactController::index'
-    _title: 'お問い合わせ'
   requirements:
     _permission: 'access content'
 
 # '/dice' パスへのルーティング定義。
-# この設定により、ユーザーが '/dice' パスにアクセスすると、
-# DiceForm フォームが表示され、「さいころ当てゲーム」というタイトルのページが表示されます。
+# DiceForm クラスを用いて、さいころ当てゲームのフォームを表示します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.dice_form:
   path: '/dice'
@@ -26,8 +53,7 @@ helloworld.dice_form:
     _permission: 'access content'
 
 # '/hello' パスへのルーティング定義。
-# この設定により、ユーザーが '/hello' パスにアクセスすると、
-# HelloController クラスの content メソッドが実行されます。
+# HelloController クラスの content メソッドを実行します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.hello:
   path: '/hello'
@@ -37,8 +63,7 @@ helloworld.hello:
     _permission: 'access content'
 
 # '/hello/contact' パスへのルーティング定義。
-# この設定により、ユーザーが '/hello/contact' パスにアクセスすると、
-# ContactForm クラスによるお問い合わせフォームが表示されます。
+# ContactForm クラスによるお問い合わせフォームを表示します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.contact_form:
   path: '/hello/contact'
@@ -49,8 +74,7 @@ helloworld.contact_form:
     _permission: 'access content'
 
 # '/hello/submissions' パスへのルーティング定義。
-# この設定により、ユーザーが '/hello/submissions' パスにアクセスすると、
-# HelloController クラスの showSubmissions メソッドが実行され、送信されたデータの一覧が表示されます。
+# HelloController クラスの showSubmissions メソッドを実行し、送信されたデータの一覧を表示します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.submissions:
   path: '/hello/submissions'

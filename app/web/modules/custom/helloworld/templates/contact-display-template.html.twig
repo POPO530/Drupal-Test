@@ -1,0 +1,31 @@
+{% if contacts is not empty %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Actions</th> <!-- アクション列を追加 -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.message }}</td>
+                    <td>
+                        <!-- 編集リンク -->
+                        <a href="/test/contact/edit/{{ contact.id }}">Edit</a>
+                        <!-- 削除リンク -->
+                        <a href="/test/contact/delete/{{ contact.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No contacts found.</p>
+{% endif %}
