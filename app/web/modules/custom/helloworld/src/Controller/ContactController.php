@@ -65,12 +65,16 @@ class ContactController extends ControllerBase {
             }
         }
         
+        // エラーがある場合、エラーメッセージを表示する
+        if (is_array($errors) && count($errors) !== 0) {
+            foreach ($errors as $error) {
+                Drupal::messenger()->addError($error);
+            }
+        }
+
         // テンプレートとエラー情報を返す
         return [
             '#theme' => 'contact-template',
-            '#vars' => [
-                "errors" => $errors
-            ],
         ];
     }
 
@@ -97,6 +101,7 @@ class ContactController extends ControllerBase {
     
         // リクエストがPOSTの場合、フォームからのデータを処理
         if ($request->isMethod('POST')) {
+
             // POSTされたデータを取得
             $posts = $request->request->all();
            
@@ -166,7 +171,14 @@ class ContactController extends ControllerBase {
             Drupal::messenger()->addError('Contact not found.');
             return new RedirectResponse('/test/contact/display');
         }
-    
+
+        // エラーがある場合、エラーメッセージを表示する
+        if (is_array($errors) && count($errors) !== 0) {
+            foreach ($errors as $error) {
+                Drupal::messenger()->addError($error);
+            }
+        }
+      
         // 編集用のフォームを表示するためのデータをテンプレートに渡す
         return [
             '#theme' => 'contact-edit-template',

@@ -28,9 +28,7 @@ function helloworld_theme($existing, $type, $theme, $path) {
     'my-template' => [
       'variables' => ['test_var' => NULL],
     ],
-    'contact-template' => [
-      'variables' => ['vars' => NULL],
-    ],
+    'contact-template' => [],
     'contact-display-template' => [
       'variables' => ['contacts' => NULL],
     ],
