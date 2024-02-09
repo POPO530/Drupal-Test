@@ -34,6 +34,11 @@ class ContactForm extends FormBase {
    *   完成したフォーム構造の配列。
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // カスタムテンプレートをレンダリングする配列
+    $form['custom_tab'] = [
+      '#theme' => 'tab-template',
+    ];
+    
     // 名前入力フィールドの定義
     $form['name'] = [
       '#type' => 'textfield',

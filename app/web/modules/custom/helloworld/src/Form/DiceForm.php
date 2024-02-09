@@ -19,6 +19,10 @@ class DiceForm extends FormBase {
     }
 
     public function buildForm(array $form, FormStateInterface $form_state) {
+        // カスタムテンプレートをレンダリングする配列
+        $form['custom_tab'] = [
+            '#theme' => 'tab-template',
+        ];
         // ユーザーが偶数または奇数を選択するためのラジオボタンを設定します。
         // これにより、ユーザーはサイコロの結果が偶数か奇数かを予想できます。
         $form['prediction'] = [

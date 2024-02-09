@@ -63,6 +63,11 @@ class HelloController extends ControllerBase {
       ];
     }
 
+    // カスタムテンプレートをレンダリングする配列
+    $build['custom_tab'] = [
+      '#theme' => 'tab-template',
+    ];
+
     // テーブル構築と返却
     $build['table'] = [
       '#theme' => 'table',

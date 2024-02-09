@@ -1,27 +1,3 @@
-# 'お問い合わせ2確認' メニューリンク定義。
-helloworld.contact_display:
-  title: 'お問い合わせ2確認'  # メニューリンクのタイトル。
-  route_name: helloworld.contact_display  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。
-  description: "新しいお問い合わせ確認"  # リンクの説明。
-  expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうか
-
-# 'お問い合わせ2' メニューリンク定義。
-helloworld.contact:
-  title: 'お問い合わせ2'  # メニューリンクのタイトル。
-  route_name: helloworld.contact  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。
-  description: "新しいお問い合わせ"  # リンクの説明。
-  expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうか
-
-# 'サイコロ当てゲーム' メニューリンクの定義。
-helloworld.dice_form:
-  title: 'サイコロ当てゲーム'  # メニューリンクのタイトル。
-  route_name: helloworld.dice_form  # このリンクが指すルート名。'helloworld.routing.yml'で定義。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。ここでは管理構造メニューを指す。
-  description: "ユーザーはサイコロの出目が偶数か奇数かを当てるゲームです。"  # リンクの説明。
-  expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうかの設定。
-
 # 'HelloWorld Example' メニューリンク定義。
 helloworld.hello:
   title: 'HelloWorld Example'  # メニューリンクのタイトル。
@@ -29,17 +5,3 @@ helloworld.hello:
   parent: system.admin_structure  # このリンクが属する親メニュー項目。
   description: "HelloWorldモジュールの例"  # リンクの説明。
   expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうか。
-
-# 'お問い合わせ' メニューリンク定義。
-helloworld.contact_form:
-  title: 'お問い合わせ'  # メニューリンクのタイトル。
-  route_name: helloworld.contact_form  # このリンクが指すルート名。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。
-  expanded: TRUE  # メニュー項目が展開されるかどうか。
-
-# 'お問い合わせ確認' メニューリンク定義。
-helloworld.submissions:
-  title: 'お問い合わせ確認'  # メニューリンクのタイトル。
-  route_name: helloworld.submissions  # このリンクが指すルート名。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。
-  expanded: TRUE  # メニュー項目が展開されるかどうか。

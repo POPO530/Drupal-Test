@@ -1,6 +1,9 @@
 {# helloworld/templates/my-template.html.twig #}
 {# このテンプレートは、helloworld モジュールで使用されます。#}
 
+{# タブのテンプレートをインクルードします #}
+{% include '@helloworld/tab-template.html.twig' %}
+
 {# 静的なテキストを表示します。#}
 <p>Test twig template!</p>
 

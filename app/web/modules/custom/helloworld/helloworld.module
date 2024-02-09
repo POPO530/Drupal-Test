@@ -35,6 +35,7 @@ function helloworld_theme($existing, $type, $theme, $path) {
     'contact-edit-template' => [
       'variables' => ['contact' => NULL],
     ],
+    'tab-template' => [],
   ];
 }
 

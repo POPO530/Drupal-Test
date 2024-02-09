@@ -1,0 +1,35 @@
+/* タブの基本スタイル */
+.tabs-navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+    position: relative;
+    border-bottom: 1px solid #333;
+  }
+
+  ul.tabs-navigation > li {
+    position: relative;
+    bottom: -1px;
+  }
+  
+  .tabs-navigation a {
+    text-decoration: none;
+    color: #0044ff;
+    display: block;
+    padding: 10px;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s; /* 背景色の変更にアニメーションを追加 */
+    border: 1px solid #333; /* ボーダーを強調 */
+  }
+  
+  .tabs-navigation a:hover {
+    background-color: #e9e9e9; /* ホバー時の背景色 */
+  }
+  
+  /* アクティブタブのスタイル */
+  .active-tab a {
+    background-color: #ffffff; /* アクティブなタブの背景色 */
+    border-bottom: 1px solid #ffffff; /* ボーダーを強調 */
+  }

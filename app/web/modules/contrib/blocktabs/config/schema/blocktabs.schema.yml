@@ -1,0 +1,76 @@
+blocktabs.blocktabs.*:
+  type: config_entity
+  label: 'blocktabs instance'
+  mapping:
+    name:
+      type: string
+    label:
+      type: string
+      label: 'Label'
+    event:
+      type: string
+      label: 'Event'
+    style:
+      type: string
+      label: 'Tabs Style'
+    tabs:
+      type: sequence
+      sequence:
+        type: mapping
+        mapping:
+          id:
+            type: string
+          title:
+            type: text
+            label: 'Tab title'
+          data:
+            type: blocktabs.tab.[%parent.id]
+          weight:
+            type: integer
+          uuid:
+            type: string
+blocktabs.tab.*:
+  type: mapping
+  label: 'Tab settings'
+
+blocktabs.tab.block_content_tab:
+  type: mapping
+  label: 'block content'
+  mapping:
+    block_uuid:
+      label: 'Block UUID'
+      type: string
+    block_view_mode:
+      label: 'Block view mode'
+      type: string
+
+blocktabs.tab.block_tab:
+  type: mapping
+  label: 'block'
+  mapping:
+    block_id:
+      label: 'Block ID'
+      type: string
+    config:
+      label: 'Block config'
+      type: mapping
+
+blocktabs.tab.views_tab:
+  type: mapping
+  label: 'views'
+  mapping:
+    view_name:
+      label: 'View name'
+      type: string
+    view_display:
+      label: 'View name'
+      type: string
+    view_arg:
+      label: 'View arg'
+      type: string
+    display_tab:
+      label: 'Display tab'
+      type: boolean
+    check_access:
+      label: 'Check access'
+      type: boolean

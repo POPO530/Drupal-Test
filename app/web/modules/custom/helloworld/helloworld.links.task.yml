@@ -1,0 +1,35 @@
+# helloworld.contact_display_tab:
+#   route_name: helloworld.contact_display
+#   base_route: helloworld.hello
+#   title: 'お問い合わせ2確認'
+#   weight: 10
+
+# helloworld.contact_tab:
+#   route_name: helloworld.contact
+#   base_route: helloworld.hello
+#   title: 'お問い合わせ2'
+#   weight: 20
+
+# helloworld.dice_form_tab:
+#   route_name: helloworld.dice_form
+#   base_route: helloworld.hello
+#   title: 'さいころゲーム'
+#   weight: 30
+
+# helloworld.hello_tab:
+#   route_name: helloworld.hello
+#   base_route: helloworld.hello
+#   title: 'Hello'
+#   weight: 40
+
+# helloworld.contact_form:
+#   route_name: helloworld.contact_form
+#   base_route: helloworld.hello
+#   title: 'お問い合わせ'
+#   weight: 50
+
+# helloworld.submissions:
+#   route_name: helloworld.submissions
+#   base_route: helloworld.hello
+#   title: 'お問い合わせ確認'
+#   weight: 60
