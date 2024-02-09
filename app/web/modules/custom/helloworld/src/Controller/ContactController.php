@@ -79,6 +79,9 @@ class ContactController extends ControllerBase {
     }
 
     public function display() {
+        // ページキャッシュを無効化する
+        // これにより、動的なコンテンツがキャッシュされるのを防ぎます
+        Drupal::service('page_cache_kill_switch')->trigger();
         // データベースから 'helloworld_contact2' テーブルを選択し、
         // 必要なフィールド (id, name, email, phone, message) を取得するクエリを作成
         $query = Drupal::database()->select('helloworld_contact2', 'hc')
