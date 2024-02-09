@@ -1,7 +1,7 @@
 {# タブのテンプレートをインクルードします #}
 {% include '@helloworld/tab-template.html.twig' %}
 
-{% if contacts is not empty %}
+{% if variables is not empty %}
     <table>
         <thead>
             <tr>
@@ -13,17 +13,18 @@
             </tr>
         </thead>
         <tbody>
-            {% for contact in contacts %}
+        
+            {% for variable in variables %}
                 <tr>
-                    <td>{{ contact.name }}</td>
-                    <td>{{ contact.email }}</td>
-                    <td>{{ contact.phone }}</td>
-                    <td>{{ contact.message }}</td>
+                    <td>{{ variable.name }}</td>
+                    <td>{{ variable.email }}</td>
+                    <td>{{ variable.phone }}</td>
+                    <td>{{ variable.message }}</td>
                     <td>
                         <!-- 編集リンク -->
-                        <a href="/test/contact/edit/{{ contact.id }}">Edit</a>
+                        <a href="/test/contact/edit/{{ variable.id }}">Edit</a>
                         <!-- 削除リンク -->
-                        <a href="/test/contact/delete/{{ contact.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a href="/test/contact/delete/{{ variable.id }}" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                 </tr>
             {% endfor %}

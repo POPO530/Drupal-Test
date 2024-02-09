@@ -22,6 +22,7 @@
         "drupal/core-recommended": "^9.5",
         "drupal/devel": "^5.1",
         "drupal/examples": "^4.0",
+        "drupal/twig_tweak": "^3.2",
         "drupal/webform": "^6.2",
         "drush/drush": "^11.6"
     },
