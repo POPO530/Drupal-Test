@@ -5,19 +5,13 @@ namespace Drupal\helloworld\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
-/**
- * お問い合わせフォームクラス。
- *
- * このクラスは、ユーザーからのお問い合わせ情報を収集するフォームを提供します。
- * フォームは、名前、メールアドレス、およびメッセージのフィールドを含んでいます。
- */
 class ContactForm extends FormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    // フォームの一意のIDを返します。
+    // このフォームの固有のIDを返します。
     return 'helloworld_contact_form';
   }
 
@@ -34,7 +28,7 @@ class ContactForm extends FormBase {
    *   完成したフォーム構造の配列。
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // カスタムテンプレートをレンダリングする配列
+    // カスタムテーマを使用するタブ要素の配列
     $form['custom_tab'] = [
       '#theme' => 'tab-template',
       '#variables' => 'bugfix',
