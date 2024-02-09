@@ -63,7 +63,7 @@ class ContactController extends HelloWorldBaseController {
             }
         }
 
-        return $this->renderTemplate('contact-template', []);
+        return $this->renderTemplate('contact-template', $this->t('bugfix'));
     }
 
     public function display() {

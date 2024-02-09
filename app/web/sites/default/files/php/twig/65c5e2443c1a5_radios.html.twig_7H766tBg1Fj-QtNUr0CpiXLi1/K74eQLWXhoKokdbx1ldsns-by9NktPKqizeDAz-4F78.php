@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* modules/custom/helloworld/templates/my-template.html.twig */
-class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
+/* core/themes/claro/templates/form/radios.html.twig */
+class __TwigTemplate_54dc3e8669f5788edfdd00c9e0ab5905 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -35,27 +35,18 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 3
-        echo "
+        // line 13
+        echo "<div";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, ($context["attributes"] ?? null), "addClass", [0 => "form-radios", 1 => "form-boolean-group"], "method", false, false, true, 13), 13, $this->source), "html", null, true);
+        echo ">";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["children"] ?? null), 13, $this->source), "html", null, true);
+        echo "</div>
 ";
-        // line 5
-        $this->loadTemplate("@helloworld/tab-template.html.twig", "modules/custom/helloworld/templates/my-template.html.twig", 5)->display($context);
-        // line 6
-        echo "
-";
-        // line 8
-        echo "<p>Test twig template!</p>
-
-";
-        // line 11
-        echo "<p>test_var: ";
-        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["variables"] ?? null), 11, $this->source), "html", null, true);
-        echo "</p>";
     }
 
     public function getTemplateName()
     {
-        return "modules/custom/helloworld/templates/my-template.html.twig";
+        return "core/themes/claro/templates/form/radios.html.twig";
     }
 
     public function isTraitable()
@@ -65,23 +56,23 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  51 => 11,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
+        return array (  39 => 13,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "modules/custom/helloworld/templates/my-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/my-template.html.twig");
+        return new Source("", "core/themes/claro/templates/form/radios.html.twig", "/var/www/html/web/core/themes/claro/templates/form/radios.html.twig");
     }
     
     public function checkSecurity()
     {
-        static $tags = array("include" => 5);
-        static $filters = array("escape" => 11);
+        static $tags = array();
+        static $filters = array("escape" => 13);
         static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
-                ['include'],
+                [],
                 ['escape'],
                 []
             );

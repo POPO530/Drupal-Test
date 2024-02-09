@@ -28,7 +28,7 @@ class HelloController extends HelloWorldBaseController {
         }
 
         $build = [];
-        $build['custom_tab'] = $this->renderTemplate('tab-template');
+        $build['custom_tab'] = $this->renderTemplate('tab-template', $this->t('bugfix'));
         $build['table'] = [
             '#theme' => 'table',
             '#header' => $header,

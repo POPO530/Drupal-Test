@@ -28,14 +28,18 @@ function helloworld_theme($existing, $type, $theme, $path) {
     'my-template' => [
       'variables' => ['variables' => NULL],
     ],
-    'contact-template' => [],
+    'contact-template' => [
+      'variables' => ['variables' => NULL],
+    ],
     'contact-display-template' => [
       'variables' => ['variables' => NULL],
     ],
     'contact-edit-template' => [
       'variables' => ['variables' => NULL],
     ],
-    'tab-template' => [],
+    'tab-template' => [
+      'variables' => ['variables' => NULL],
+    ],
   ];
 }
 

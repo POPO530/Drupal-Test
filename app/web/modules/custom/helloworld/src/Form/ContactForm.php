@@ -37,6 +37,7 @@ class ContactForm extends FormBase {
     // カスタムテンプレートをレンダリングする配列
     $form['custom_tab'] = [
       '#theme' => 'tab-template',
+      '#variables' => 'bugfix',
     ];
     
     // 名前入力フィールドの定義

@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* @helloworld/tab-template.html.twig */
+/* modules/custom/helloworld/templates/tab-template.html.twig */
 class __TwigTemplate_fb6d187eda6519d8c0da513d91c56fae extends \Twig\Template
 {
     private $source;
@@ -50,7 +50,7 @@ class __TwigTemplate_fb6d187eda6519d8c0da513d91c56fae extends \Twig\Template
 
     public function getTemplateName()
     {
-        return "@helloworld/tab-template.html.twig";
+        return "modules/custom/helloworld/templates/tab-template.html.twig";
     }
 
     public function getDebugInfo()
@@ -60,7 +60,7 @@ class __TwigTemplate_fb6d187eda6519d8c0da513d91c56fae extends \Twig\Template
 
     public function getSourceContext()
     {
-        return new Source("", "@helloworld/tab-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/tab-template.html.twig");
+        return new Source("", "modules/custom/helloworld/templates/tab-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/tab-template.html.twig");
     }
     
     public function checkSecurity()

@@ -14,10 +14,15 @@ abstract class HelloWorldBaseController extends ControllerBase {
     }
 
     protected function renderTemplate($theme, $variables = []) {
-        //dd($variables);
-        return [
-            '#theme' => $theme,
-            '#variables' => $variables,
-        ];
+        if (!empty($variables)) {
+            return [
+                '#theme' => $theme,
+                '#variables' => $variables,
+            ];
+        } else {
+            return [
+                '#theme' => $theme,
+            ];
+        }
     }
 }
