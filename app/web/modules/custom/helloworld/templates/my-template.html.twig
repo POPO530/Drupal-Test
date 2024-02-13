@@ -7,5 +7,33 @@
 {# 静的なテキストを表示します。#}
 <p>Test twig template!</p>
 
-{# test_var 変数の値を表示します。この変数は、Drupalのコントローラから渡されるべきです。#}
-<p>test_var: {{ variables }}</p>
+{% if variables is not empty %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Actions</th> <!-- アクション列を追加 -->
+            </tr>
+        </thead>
+        <tbody>
+        
+            {% for variable in variables %}
+                <tr>
+                    <td>{{ variable.name }}</td>
+                    <td>{{ variable.email }}</td>
+                    <td>{{ variable.phone }}</td>
+                    <td>{{ variable.message }}</td>
+                    <td>
+                        <!-- 削除リンク -->
+                        <a href="/test/contact/delete2/{{ variable.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No contacts found.</p>
+{% endif %}

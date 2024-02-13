@@ -1,6 +1,16 @@
 # Drupalモジュールのルーティング設定ファイル。
 # このファイルは、特定のURLにアクセスされた際に、対応するコントローラの関数やメソッドにリクエストをマッピングします。
 
+# '/test/contact/delete2/{contact_id}' パスへのルーティング定義。
+# Contact クラスの delete メソッドを実行し、指定されたコンタクトの削除を行います。
+# アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。
+helloworld.contact_delete2:
+  path: '/test/contact/delete2/{contact_id}'
+  defaults:
+    _controller: '\Drupal\helloworld\classes\Contact::delete'
+  requirements:
+    _permission: 'administer site configuration'
+
 # '/test/contact/delete/{contact_id}' パスへのルーティング定義。
 # ContactController クラスの delete メソッドを実行し、指定されたコンタクトの削除を行います。
 # アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。

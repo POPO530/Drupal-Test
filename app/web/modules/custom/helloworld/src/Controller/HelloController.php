@@ -2,12 +2,42 @@
 
 namespace Drupal\helloworld\Controller;
 
+use Drupal\helloworld\classes\Contact;
+
 class HelloController extends HelloWorldBaseController {
 
+    /**
+     * コンテンツを処理するメソッド
+     * このメソッドでは、Contact クラスを使用してデータベースの操作を行います。
+     * まず、指定されたテーブル名を使って Contact オブジェクトを作成します。
+     * 次に、getList メソッドを使ってデータベースからリストを取得します。
+     * 次に、delete メソッドを使用して id が 5 のエントリを削除します。
+     * その後、新しいデータを挿入するために、データの連想配列を作成し、set メソッドを使用して挿入します。
+     * 最後に、リストとともにテンプレートをレンダリングして返します。
+     */
     public function content() {
-        // 'my-template' テンプレートをレンダリングし、
-        // テンプレートに 'Test Value' という翻訳された文字列を渡す
-        return $this->renderTemplate('my-template', $this->t('Test Value'));
+        // Contact クラスのインスタンスを作成し、指定されたテーブル名を渡します
+        $contact = new Contact("helloworld_contact2");
+
+        // リストを取得します
+        $list = $contact->getList();
+
+        // id が 5 のエントリを削除します
+        $contact->delete(5);
+
+        // 新しいデータを挿入するための連想配列を作成します
+        $contactData = [
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'phone' => '123-456-7890',
+            'message' => 'Hello, world!'
+        ];
+
+        // 連想配列を使って新しいデータを挿入します
+        $contact->set($contactData);
+
+        // テンプレートをレンダリングしてリストと共に返します
+        return $this->renderTemplate('my-template', $list);
     }
 
     public function showSubmissions() {
