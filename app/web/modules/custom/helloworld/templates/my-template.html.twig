@@ -11,25 +11,22 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Message</th>
-                <th>Actions</th> <!-- アクション列を追加 -->
             </tr>
         </thead>
         <tbody>
         
             {% for variable in variables %}
                 <tr>
+                    <td>{{ variable.id }}</td>
                     <td>{{ variable.name }}</td>
                     <td>{{ variable.email }}</td>
                     <td>{{ variable.phone }}</td>
                     <td>{{ variable.message }}</td>
-                    <td>
-                        <!-- 削除リンク -->
-                        <a href="/test/contact/delete2/{{ variable.id }}" onclick="return confirm('Are you sure?')">Delete</a>
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>

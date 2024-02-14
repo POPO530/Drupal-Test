@@ -53,11 +53,11 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
             echo "    <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Message</th>
-                <th>Actions</th> <!-- アクション列を追加 -->
             </tr>
         </thead>
         <tbody>
@@ -71,39 +71,36 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
                 echo "                <tr>
                     <td>";
                 // line 25
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "name", [], "any", false, false, true, 25), 25, $this->source), "html", null, true);
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "id", [], "any", false, false, true, 25), 25, $this->source), "html", null, true);
                 echo "</td>
                     <td>";
                 // line 26
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "email", [], "any", false, false, true, 26), 26, $this->source), "html", null, true);
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "name", [], "any", false, false, true, 26), 26, $this->source), "html", null, true);
                 echo "</td>
                     <td>";
                 // line 27
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "phone", [], "any", false, false, true, 27), 27, $this->source), "html", null, true);
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "email", [], "any", false, false, true, 27), 27, $this->source), "html", null, true);
                 echo "</td>
                     <td>";
                 // line 28
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "message", [], "any", false, false, true, 28), 28, $this->source), "html", null, true);
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "phone", [], "any", false, false, true, 28), 28, $this->source), "html", null, true);
                 echo "</td>
-                    <td>
-                        <!-- 削除リンク -->
-                        <a href=\"/test/contact/delete2/";
-                // line 31
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "id", [], "any", false, false, true, 31), 31, $this->source), "html", null, true);
-                echo "\" onclick=\"return confirm('Are you sure?')\">Delete</a>
-                    </td>
+                    <td>";
+                // line 29
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "message", [], "any", false, false, true, 29), 29, $this->source), "html", null, true);
+                echo "</td>
                 </tr>
             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['variable'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 35
+            // line 32
             echo "        </tbody>
     </table>
 ";
         } else {
-            // line 38
+            // line 35
             echo "    <p>No contacts found.</p>
 ";
         }
@@ -121,7 +118,7 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  107 => 38,  102 => 35,  92 => 31,  86 => 28,  82 => 27,  78 => 26,  74 => 25,  71 => 24,  67 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
+        return array (  104 => 35,  99 => 32,  90 => 29,  86 => 28,  82 => 27,  78 => 26,  74 => 25,  71 => 24,  67 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
     }
 
     public function getSourceContext()

@@ -23,7 +23,7 @@ class HelloController extends HelloWorldBaseController {
         $list = $contact->getList();
 
         // id が 5 のエントリを削除します
-        $contact->delete(5);
+        $contact->delete(rand(1, $contact->getId()));
 
         // 新しいデータを挿入するための連想配列を作成します
         $contactData = [
