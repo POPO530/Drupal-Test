@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* modules/custom/helloworld/templates/my-template.html.twig */
-class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
+/* core/modules/system/templates/form.html.twig */
+class __TwigTemplate_7b0988ba4ac1ccb9e7dfee6a37b91018 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -35,52 +35,21 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 3
+        // line 15
+        echo "<form";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["attributes"] ?? null), 15, $this->source), "html", null, true);
+        echo ">
+  ";
+        // line 16
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["children"] ?? null), 16, $this->source), "html", null, true);
         echo "
+</form>
 ";
-        // line 5
-        $this->loadTemplate("@helloworld/tab-template.html.twig", "modules/custom/helloworld/templates/my-template.html.twig", 5)->display($context);
-        // line 6
-        echo "
-";
-        // line 8
-        echo "<p>Test twig template!</p>
-
-";
-        // line 10
-        if ( !twig_test_empty(($context["variables"] ?? null))) {
-            // line 11
-            echo "    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody>
-            ";
-            // line 23
-            echo "        </tbody>
-    </table>
-";
-        } else {
-            // line 26
-            echo "    <p>No contacts found.</p>
-";
-        }
-        // line 28
-        echo "
-";
-        // line 30
-        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->extensions['Drupal\Core\Template\TwigExtension']->attachLibrary("helloworld/helloworld.accordion"), "html", null, true);
     }
 
     public function getTemplateName()
     {
-        return "modules/custom/helloworld/templates/my-template.html.twig";
+        return "core/modules/system/templates/form.html.twig";
     }
 
     public function isTraitable()
@@ -90,25 +59,25 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  78 => 30,  75 => 28,  71 => 26,  66 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
+        return array (  44 => 16,  39 => 15,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "modules/custom/helloworld/templates/my-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/my-template.html.twig");
+        return new Source("", "core/modules/system/templates/form.html.twig", "/var/www/html/web/core/modules/system/templates/form.html.twig");
     }
     
     public function checkSecurity()
     {
-        static $tags = array("include" => 5, "if" => 10);
-        static $filters = array("escape" => 30);
-        static $functions = array("attach_library" => 30);
+        static $tags = array();
+        static $filters = array("escape" => 15);
+        static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
-                ['include', 'if'],
+                [],
                 ['escape'],
-                ['attach_library']
+                []
             );
         } catch (SecurityError $e) {
             $e->setSourceContext($this->source);

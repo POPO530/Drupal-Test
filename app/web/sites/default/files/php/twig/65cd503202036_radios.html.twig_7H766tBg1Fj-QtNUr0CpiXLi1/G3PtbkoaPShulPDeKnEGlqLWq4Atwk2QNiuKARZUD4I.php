@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* @helloworld/tab-template.html.twig */
-class __TwigTemplate_fb6d187eda6519d8c0da513d91c56fae extends \Twig\Template
+/* core/themes/claro/templates/form/radios.html.twig */
+class __TwigTemplate_54dc3e8669f5788edfdd00c9e0ab5905 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -35,44 +35,45 @@ class __TwigTemplate_fb6d187eda6519d8c0da513d91c56fae extends \Twig\Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<link rel=\"stylesheet\" href=\"/modules/custom/helloworld/css/styles.css\">
-<ul class=\"tabs-navigation\">
-  <li><a href=\"/test/contact/display\">お問い合わせ2管理</a></li>
-  <li><a href=\"/test/contact\">お問い合わせ2</a></li>
-  <li><a href=\"/dice\">さいころ当てゲーム</a></li>
-  <li><a href=\"/hello\">ハローページ</a></li>
-  <li><a href=\"/hello/contact\">お問い合わせ</a></li>
-  <li><a href=\"/hello/submissions\">お問い合わせ管理</a></li>
-</ul>
-<script src=\"/modules/custom/helloworld/js/scripts.js\"></script>";
+        // line 13
+        echo "<div";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, ($context["attributes"] ?? null), "addClass", [0 => "form-radios", 1 => "form-boolean-group"], "method", false, false, true, 13), 13, $this->source), "html", null, true);
+        echo ">";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["children"] ?? null), 13, $this->source), "html", null, true);
+        echo "</div>
+";
     }
 
     public function getTemplateName()
     {
-        return "@helloworld/tab-template.html.twig";
+        return "core/themes/claro/templates/form/radios.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
     }
 
     public function getDebugInfo()
     {
-        return array (  39 => 1,);
+        return array (  39 => 13,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "@helloworld/tab-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/tab-template.html.twig");
+        return new Source("", "core/themes/claro/templates/form/radios.html.twig", "/var/www/html/web/core/themes/claro/templates/form/radios.html.twig");
     }
     
     public function checkSecurity()
     {
         static $tags = array();
-        static $filters = array();
+        static $filters = array("escape" => 13);
         static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
                 [],
-                [],
+                ['escape'],
                 []
             );
         } catch (SecurityError $e) {

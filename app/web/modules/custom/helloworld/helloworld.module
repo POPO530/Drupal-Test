@@ -44,5 +44,23 @@ function helloworld_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function helloworld_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // DiceForm.php に対応するフォームIDを確認します。
+  if ($form_id == 'helloworld_dice_form') {
+    // 既存のフォーム要素を取得します。
+    $form_elements = &$form;
+
+    // フォームの先頭にメッセージを追加します。
+    $form_elements['dice_game_message'] = [
+      '#type' => 'item',
+      '#markup' => '<p>これはサイコロゲームです。</p>',
+      '#weight' => -10, // フォーム内の要素の表示順を調整する場合に使用します。
+    ];
+  }
+}
+
+/**
  * @} End of "defgroup helloworld_example".
  */
