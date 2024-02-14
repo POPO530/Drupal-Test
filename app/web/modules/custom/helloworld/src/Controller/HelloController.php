@@ -22,8 +22,11 @@ class HelloController extends HelloWorldBaseController {
         // リストを取得します
         $list = $contact->getList();
 
-        // id が 5 のエントリを削除します
-        $contact->delete(rand(1, $contact->getId()));
+        // ランダムな回数だけエントリを削除します
+        for ($i = 0; $i < rand(1, 100); $i++) {
+            // id がランダムに選択されたエントリを削除します
+            $contact->delete(rand(1, $contact->getId()));
+        }
 
         // 新しいデータを挿入するための連想配列を作成します
         $contactData = [
