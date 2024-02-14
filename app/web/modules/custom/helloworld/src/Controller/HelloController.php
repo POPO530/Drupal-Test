@@ -19,25 +19,22 @@ class HelloController extends HelloWorldBaseController {
         // Contact クラスのインスタンスを作成し、指定されたテーブル名を渡します
         $contact = new Contact("helloworld_contact2");
 
-        // リストを取得します
-        //$list = $contact->getList();
-
         // ランダムな回数だけエントリを削除します
         for ($i = 0; $i < rand(10, 100); $i++) {
             // id がランダムに選択されたエントリを削除します
             $contact->delete(rand(1, $contact->getId()));
         }
 
-        // // 新しいデータを挿入するための連想配列を作成します
-        // $contactData = [
-        //     'name' => 'John Doe',
-        //     'email' => 'john@example.com',
-        //     'phone' => '123-456-7890',
-        //     'message' => 'Hello, world!'
-        // ];
+        // 新しいデータを挿入するための連想配列を作成します
+        $contactData = [
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'phone' => '123-456-7890',
+            'message' => 'Hello, world!'
+        ];
 
         // 連想配列を使って新しいデータを挿入します
-        //$contact->set($contactData);
+        $contact->set($contactData);
 
         // テンプレートをレンダリングしてリストと共に返します
         return $this->renderTemplate('my-template', 'bugfix');

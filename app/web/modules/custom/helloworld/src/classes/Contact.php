@@ -9,23 +9,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 // Contact クラスの定義
 class Contact extends AbstractContact {
-    // リストを取得するメソッド
-    public function getList() {
-        try {
-            // テーブルから全てのフィールドを取得するためのクエリを作成します。
-            $query = $this->connection->select($this->table, 'tn');
-            $query->fields('tn');
-            // クエリを実行して結果を取得し、フェッチします。
-            $result = $query->execute();
-            return $result->fetchAll(); // 取得した結果を返します。
-        } catch(\Exception $e) {
-            // エラーログを記録します。
-            \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
-            // エラー処理
-            return new RedirectResponse('/dice'); // エラー時にはリダイレクトします。
-        }
-    }
-
     public function getJsonList() {
         try {
             // テーブルから全てのフィールドを取得するためのクエリを作成します。

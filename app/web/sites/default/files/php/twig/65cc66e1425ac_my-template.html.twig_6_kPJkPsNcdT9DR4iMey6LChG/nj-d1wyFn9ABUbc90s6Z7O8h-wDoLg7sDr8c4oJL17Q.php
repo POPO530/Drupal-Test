@@ -72,32 +72,10 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 ";
         }
         // line 28
-        echo "<script>
-    async function fetchJson() {
-        try {
-            const response = await fetch(`http://localhost/hello/json`);
-            if (!response.ok) throw new Error(\"Network response was not ok\");
-            const data = await response.json();
-            // テーブルにJSONデータを追加する
-            const tbody = document.querySelector('tbody');
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>\${item.id}</td>
-                    <td>\${item.name}</td>
-                    <td>\${item.email}</td>
-                    <td>\${item.phone}</td>
-                    <td>\${item.message}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        } catch (error) {
-            alert(`エラーが発生しました: \${error.message}`);
-        }
-    }
-
-    fetchJson();
-</script>";
+        echo "
+";
+        // line 30
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->extensions['Drupal\Core\Template\TwigExtension']->attachLibrary("helloworld/helloworld.accordion"), "html", null, true);
     }
 
     public function getTemplateName()
@@ -112,7 +90,7 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  75 => 28,  71 => 26,  66 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
+        return array (  78 => 30,  75 => 28,  71 => 26,  66 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
     }
 
     public function getSourceContext()
@@ -123,14 +101,14 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
     public function checkSecurity()
     {
         static $tags = array("include" => 5, "if" => 10);
-        static $filters = array();
-        static $functions = array();
+        static $filters = array("escape" => 30);
+        static $functions = array("attach_library" => 30);
 
         try {
             $this->sandbox->checkSecurity(
                 ['include', 'if'],
-                [],
-                []
+                ['escape'],
+                ['attach_library']
             );
         } catch (SecurityError $e) {
             $e->setSourceContext($this->source);

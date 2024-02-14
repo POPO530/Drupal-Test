@@ -1,0 +1,3 @@
+helloworld.accordion:
+  js:
+    /modules/custom/helloworld/js/helloworld.js: {}
