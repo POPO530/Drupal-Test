@@ -5,6 +5,7 @@ namespace Drupal\helloworld\classes;
 
 // Symfony の RedirectResponse クラスをインポートします。
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 // Contact クラスの定義
 class Contact extends AbstractContact {
@@ -22,6 +23,25 @@ class Contact extends AbstractContact {
             \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
             // エラー処理
             return new RedirectResponse('/dice'); // エラー時にはリダイレクトします。
+        }
+    }
+
+    public function getJsonList() {
+        try {
+            // テーブルから全てのフィールドを取得するためのクエリを作成します。
+            $query = $this->connection->select($this->table, 'tn');
+            $query->fields('tn');
+            // クエリを実行して結果を取得し、フェッチします。
+            $result = $query->execute();
+            $list = $result->fetchAll(); // 取得した結果を変数に格納します。
+            
+            // JSON形式でデータを返します。
+            return new JsonResponse($list);
+        } catch(\Exception $e) {
+            // エラーログを記録します。
+            \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
+            // エラー処理
+            return [];
         }
     }
 

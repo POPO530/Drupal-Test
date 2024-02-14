@@ -62,6 +62,13 @@ helloworld.hello:
   requirements:
     _permission: 'access content'
 
+helloworld.hello_json:
+  path: '/hello/json'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\HelloController::getJson'
+  requirements:
+    _permission: 'access content'
+
 # '/hello/contact' パスへのルーティング定義。
 # ContactForm クラスによるお問い合わせフォームを表示します。
 # アクセスは 'access content' パーミッションを持つユーザーに限定されます。

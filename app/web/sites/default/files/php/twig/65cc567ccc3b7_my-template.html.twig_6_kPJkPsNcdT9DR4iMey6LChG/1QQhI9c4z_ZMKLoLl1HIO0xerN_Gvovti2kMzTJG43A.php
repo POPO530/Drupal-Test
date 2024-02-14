@@ -61,49 +61,43 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
             </tr>
         </thead>
         <tbody>
-        
             ";
             // line 23
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable(($context["variables"] ?? null));
-            foreach ($context['_seq'] as $context["_key"] => $context["variable"]) {
-                // line 24
-                echo "                <tr>
-                    <td>";
-                // line 25
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "id", [], "any", false, false, true, 25), 25, $this->source), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 26
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "name", [], "any", false, false, true, 26), 26, $this->source), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 27
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "email", [], "any", false, false, true, 27), 27, $this->source), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 28
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "phone", [], "any", false, false, true, 28), 28, $this->source), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 29
-                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["variable"], "message", [], "any", false, false, true, 29), 29, $this->source), "html", null, true);
-                echo "</td>
-                </tr>
-            ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['variable'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 32
             echo "        </tbody>
     </table>
 ";
         } else {
-            // line 35
+            // line 26
             echo "    <p>No contacts found.</p>
 ";
         }
+        // line 28
+        echo "<script>
+    async function fetchJson() {
+        try {
+            const response = await fetch(`http://localhost/hello/json`);
+            if (!response.ok) throw new Error(\"Network response was not ok\");
+            const data = await response.json();
+            // テーブルにJSONデータを追加する
+            const tbody = document.querySelector('tbody');
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>\${item.id}</td>
+                    <td>\${item.name}</td>
+                    <td>\${item.email}</td>
+                    <td>\${item.phone}</td>
+                    <td>\${item.message}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        } catch (error) {
+            alert(`エラーが発生しました: \${error.message}`);
+        }
+    }
+
+    fetchJson();
+</script>";
     }
 
     public function getTemplateName()
@@ -118,7 +112,7 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  104 => 35,  99 => 32,  90 => 29,  86 => 28,  82 => 27,  78 => 26,  74 => 25,  71 => 24,  67 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
+        return array (  75 => 28,  71 => 26,  66 => 23,  53 => 11,  51 => 10,  47 => 8,  44 => 6,  42 => 5,  39 => 3,);
     }
 
     public function getSourceContext()
@@ -128,14 +122,14 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
     
     public function checkSecurity()
     {
-        static $tags = array("include" => 5, "if" => 10, "for" => 23);
-        static $filters = array("escape" => 25);
+        static $tags = array("include" => 5, "if" => 10);
+        static $filters = array();
         static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
-                ['include', 'if', 'for'],
-                ['escape'],
+                ['include', 'if'],
+                [],
                 []
             );
         } catch (SecurityError $e) {

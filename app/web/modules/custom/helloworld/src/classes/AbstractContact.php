@@ -24,6 +24,8 @@ abstract class AbstractContact {
     // 抽象メソッド：リストを取得するためのメソッド
     abstract public function getList();
 
+    abstract public function getJsonList();
+
     // 抽象メソッド：条件に基づいて id を取得するメソッド
     abstract public function getId($condition = []);
 

@@ -20,27 +20,33 @@ class HelloController extends HelloWorldBaseController {
         $contact = new Contact("helloworld_contact2");
 
         // リストを取得します
-        $list = $contact->getList();
+        //$list = $contact->getList();
 
         // ランダムな回数だけエントリを削除します
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(10, 100); $i++) {
             // id がランダムに選択されたエントリを削除します
             $contact->delete(rand(1, $contact->getId()));
         }
 
-        // 新しいデータを挿入するための連想配列を作成します
-        $contactData = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'phone' => '123-456-7890',
-            'message' => 'Hello, world!'
-        ];
+        // // 新しいデータを挿入するための連想配列を作成します
+        // $contactData = [
+        //     'name' => 'John Doe',
+        //     'email' => 'john@example.com',
+        //     'phone' => '123-456-7890',
+        //     'message' => 'Hello, world!'
+        // ];
 
         // 連想配列を使って新しいデータを挿入します
-        $contact->set($contactData);
+        //$contact->set($contactData);
 
         // テンプレートをレンダリングしてリストと共に返します
-        return $this->renderTemplate('my-template', $list);
+        return $this->renderTemplate('my-template', 'bugfix');
+    }
+
+    public function getJson() {
+        $contact = new Contact("helloworld_contact2");
+        $list = $contact->getJsonList();
+        return $list;
     }
 
     public function showSubmissions() {
