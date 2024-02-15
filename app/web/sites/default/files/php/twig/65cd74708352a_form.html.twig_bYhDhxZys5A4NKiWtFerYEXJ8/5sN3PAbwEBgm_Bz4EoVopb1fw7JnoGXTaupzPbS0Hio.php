@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* modules/custom/helloworld/templates/contact-template.html.twig */
-class __TwigTemplate_6bec7e5b7b17de396cb034be8848ddbe extends \Twig\Template
+/* core/modules/system/templates/form.html.twig */
+class __TwigTemplate_7b0988ba4ac1ccb9e7dfee6a37b91018 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -35,43 +35,21 @@ class __TwigTemplate_6bec7e5b7b17de396cb034be8848ddbe extends \Twig\Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        $this->loadTemplate("@helloworld/tab-template.html.twig", "modules/custom/helloworld/templates/contact-template.html.twig", 1)->display($context);
-        // line 2
+        // line 15
+        echo "<form";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["attributes"] ?? null), 15, $this->source), "html", null, true);
+        echo ">
+  ";
+        // line 16
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["children"] ?? null), 16, $this->source), "html", null, true);
         echo "
-<!-- お問い合わせフォーム -->
-<form action=\"";
-        // line 4
-        echo $this->extensions['Drupal\Core\Template\TwigExtension']->renderVar($this->extensions['Drupal\Core\Template\TwigExtension']->getPath("helloworld.contact"));
-        echo "\" method=\"post\">
-  <!-- 名前入力欄 -->
-  <div>
-    <label for=\"name\">名前:</label>
-    <input type=\"text\" id=\"name\" name=\"name\" required>
-  </div>
-  <!-- メールアドレス入力欄 -->
-  <div>
-    <label for=\"email\">メールアドレス:</label>
-    <input type=\"email\" id=\"email\" name=\"email\" required>
-  </div>
-  <!-- 電話番号入力欄 -->
-  <div>
-    <label for=\"phone\">電話番号:</label>
-    <input type=\"text\" id=\"phone\" name=\"phone\" required>
-  </div>
-  <!-- メッセージ入力欄 -->
-  <div>
-    <label for=\"message\">メッセージ:</label>
-    <textarea id=\"message\" name=\"message\" required></textarea>
-  </div>
-  <!-- 送信ボタン -->
-  <button type=\"submit\">送信</button>
-</form>";
+</form>
+";
     }
 
     public function getTemplateName()
     {
-        return "modules/custom/helloworld/templates/contact-template.html.twig";
+        return "core/modules/system/templates/form.html.twig";
     }
 
     public function isTraitable()
@@ -81,25 +59,25 @@ class __TwigTemplate_6bec7e5b7b17de396cb034be8848ddbe extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  45 => 4,  41 => 2,  39 => 1,);
+        return array (  44 => 16,  39 => 15,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "modules/custom/helloworld/templates/contact-template.html.twig", "/var/www/html/web/modules/custom/helloworld/templates/contact-template.html.twig");
+        return new Source("", "core/modules/system/templates/form.html.twig", "/var/www/html/web/core/modules/system/templates/form.html.twig");
     }
     
     public function checkSecurity()
     {
-        static $tags = array("include" => 1);
-        static $filters = array();
-        static $functions = array("path" => 4);
+        static $tags = array();
+        static $filters = array("escape" => 15);
+        static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
-                ['include'],
                 [],
-                ['path']
+                ['escape'],
+                []
             );
         } catch (SecurityError $e) {
             $e->setSourceContext($this->source);
