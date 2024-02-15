@@ -89,4 +89,4 @@ helloworld.submissions:
     _controller: '\Drupal\helloworld\Controller\HelloController::showSubmissions'
     _title: 'Submission List'
   requirements:
-    _permission: 'access content'
+    _permission: 'administer site configuration'
