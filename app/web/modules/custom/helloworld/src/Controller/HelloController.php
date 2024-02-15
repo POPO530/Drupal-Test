@@ -15,21 +15,25 @@ class HelloController extends HelloWorldBaseController {
      * 最後に、テンプレートをレンダリングして返します。
      */
     public function content() {
-        $contact = new Contact("helloworld_contact2");
-
+        // Drupal のサービスコンテナーからデータベース接続サービスを取得
+        $connection = \Drupal::database();
+        
+        // Contact クラスのインスタンスを作成し、データベース接続サービスとテーブル名を渡す
+        $contact = new Contact($connection, "helloworld_contact2");
+    
         for ($i = 0; $i < rand(10, 100); $i++) {
             $contact->delete(rand(1, $contact->getId()));
         }
-
+    
         $contactData = [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'phone' => '123-456-7890',
             'message' => 'Hello, world!'
         ];
-
+    
         $contact->set($contactData);
-
+    
         return $this->renderTemplate('my-template', 'bugfix');
     }
 
@@ -37,7 +41,12 @@ class HelloController extends HelloWorldBaseController {
      * JSONリストを取得するメソッド
      */
     public function getJson() {
-        $contact = new Contact("helloworld_contact2");
+        // Drupal のサービスコンテナーからデータベース接続サービスを取得
+        $connection = \Drupal::database();
+        
+        // Contact クラスのインスタンスを作成し、データベース接続サービスとテーブル名を渡す
+        $contact = new Contact($connection, "helloworld_contact2");
+        
         $list = $contact->getJsonList();
         return $list;
     }

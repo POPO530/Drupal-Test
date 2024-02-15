@@ -9,6 +9,8 @@ async function fetchJson() {
         const data = await response.json();
         // テーブルのtbody要素を取得
         const tbody = document.querySelector('tbody');
+        // テーブルの内容をクリア
+        tbody.innerHTML = '';
         // 取得したJSONデータをテーブルに追加
         data.forEach(item => {
             // 新しいテーブル行を作成

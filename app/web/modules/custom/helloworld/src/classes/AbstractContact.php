@@ -3,6 +3,8 @@
 // Drupal\helloworld\classes ネームスペースに AbstractContact 抽象クラスを定義します。
 namespace Drupal\helloworld\classes;
 
+use Drupal\Core\Database\Connection;
+
 // AbstractContact クラスの定義
 abstract class AbstractContact {
     // データベース接続オブジェクトを保持するプロパティ
@@ -11,11 +13,11 @@ abstract class AbstractContact {
     protected $table;
 
     // コンストラクター
-    public function __construct($table = null) {
+    public function __construct(Connection $connection, $table = null) {
+        // データベース接続オブジェクトを設定
+        $this->connection = $connection;
         // テーブル名が提供されている場合
         if ($table) {
-            // データベース接続オブジェクトを取得
-            $this->connection = \Drupal::database();
             // テーブル名を設定
             $this->table = $table;
         }

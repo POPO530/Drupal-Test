@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // タブ要素のリストを取得
   const tabs = document.querySelectorAll('.tabs-navigation a');
+  
   // 各タブにクリックイベントリスナーを追加
   tabs.forEach(tab => {
     tab.addEventListener('click', function(event) {
