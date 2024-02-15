@@ -20,22 +20,31 @@ class HelloController extends HelloWorldBaseController {
         
         // Contact クラスのインスタンスを作成し、データベース接続サービスとテーブル名を渡す
         $contact = new Contact($connection, "helloworld_contact2");
-    
+
         for ($i = 0; $i < rand(10, 100); $i++) {
             $contact->delete(rand(1, $contact->getId()));
         }
-    
+
         $contactData = [
             'name' => 'John Doe',
             'email' => 'john@example.com',
-            'phone' => '123-456-7890',
+            'phone' => $this->generateRandomPhoneNumber(), // ランダムな電話番号を生成
             'message' => 'Hello, world!'
         ];
-    
+
         $contact->set($contactData);
-    
+
         return $this->renderTemplate('my-template', 'bugfix');
     }
+
+/**
+ * ランダムな電話番号を生成するメソッド
+ */
+private function generateRandomPhoneNumber() {
+    // ランダムな番号の生成（例：123-456-7890）
+    $phoneNumber = sprintf("%03d-%03d-%04d", rand(0, 999), rand(0, 999), rand(0, 9999));
+    return $phoneNumber;
+}
 
     /**
      * JSONリストを取得するメソッド
