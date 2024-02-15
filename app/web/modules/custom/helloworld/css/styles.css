@@ -10,8 +10,8 @@
 }
 
 ul.tabs-navigation > li {
-  position: relative;
-  bottom: -1px;
+  position: relative; /* 相対位置付けを設定 */
+  bottom: -1px; /* 上の要素から1ピクセル上に配置 */
 }
 
 .tabs-navigation a {
