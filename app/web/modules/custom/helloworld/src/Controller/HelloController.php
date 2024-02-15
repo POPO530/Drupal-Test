@@ -26,10 +26,10 @@ class HelloController extends HelloWorldBaseController {
         }
 
         $contactData = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
+            'name' => $this->generateRandomName(), // ランダムな名前を生成
+            'email' => $this->generateRandomEmail(), // ランダムなメールアドレスを生成
             'phone' => $this->generateRandomPhoneNumber(), // ランダムな電話番号を生成
-            'message' => 'Hello, world!'
+            'message' => $this->generateRandomMessage() // ランダムなメッセージを生成
         ];
 
         $contact->set($contactData);
@@ -37,14 +37,43 @@ class HelloController extends HelloWorldBaseController {
         return $this->renderTemplate('my-template', 'bugfix');
     }
 
-/**
- * ランダムな電話番号を生成するメソッド
- */
-private function generateRandomPhoneNumber() {
-    // ランダムな番号の生成（例：123-456-7890）
-    $phoneNumber = sprintf("%03d-%03d-%04d", rand(0, 999), rand(0, 999), rand(0, 9999));
-    return $phoneNumber;
-}
+    /**
+     * ランダムな名前を生成するメソッド
+     */
+    private function generateRandomName() {
+        // ランダムな名前の生成
+        $names = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Emily Brown'];
+        return $names[array_rand($names)];
+    }
+
+    /**
+     * ランダムなメールアドレスを生成するメソッド
+     */
+    private function generateRandomEmail() {
+        // ランダムなメールアドレスの生成
+        $domains = ['example.com', 'test.org', 'mail.net'];
+        $username = strtolower($this->generateRandomName());
+        $domain = $domains[array_rand($domains)];
+        return $username . '@' . $domain;
+    }
+
+    /**
+     * ランダムな電話番号を生成するメソッド
+     */
+    private function generateRandomPhoneNumber() {
+        // ランダムな番号の生成（例：123-456-7890）
+        $phoneNumber = sprintf("%03d-%03d-%04d", rand(0, 999), rand(0, 999), rand(0, 9999));
+        return $phoneNumber;
+    }
+
+    /**
+     * ランダムなメッセージを生成するメソッド
+     */
+    private function generateRandomMessage() {
+        // ランダムなメッセージの生成
+        $messages = ['Hello, world!', 'This is a test message.', 'Lorem ipsum dolor sit amet.'];
+        return $messages[array_rand($messages)];
+    }
 
     /**
      * JSONリストを取得するメソッド

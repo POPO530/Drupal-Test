@@ -42,7 +42,7 @@ class __TwigTemplate_937f1961b9db8b1d3cf2e48ad068f9c3 extends \Twig\Template
 <!-- テスト用Twigテンプレート -->
 <p>Test twig template!</p>
 
-<input type=\"text\" id=\"searchInput\" onkeyup=\"filterTable()\" placeholder=\"Search for phone number\">
+<input type=\"text\" id=\"searchInput\" onkeyup=\"filterTable()\" placeholder=\"検索\">
 
 ";
         // line 8
