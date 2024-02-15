@@ -12,6 +12,8 @@ class Contact extends AbstractContact {
             // テーブルから全てのフィールドを取得するためのクエリを作成します。
             $query = $this->connection->select($this->table, 'tn');
             $query->fields('tn');
+            // クエリに降順の並び替え条件を追加
+            $query->orderBy('tn.id', 'DESC');
             // クエリを実行して結果を取得し、フェッチします。
             $result = $query->execute();
             $list = $result->fetchAll();
