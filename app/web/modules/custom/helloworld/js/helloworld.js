@@ -34,3 +34,24 @@ async function fetchJson() {
 
 // fetchJson関数を呼び出してJSONデータを取得し、テーブルに表示
 fetchJson();
+
+// テキストボックスに入力があるたびにテーブルをフィルタリングする関数
+function filterTable() {
+    // テキストボックスの値を取得
+    const filterValue = document.getElementById('searchInput').value.toUpperCase();
+    // テーブルの行を取得
+    const rows = document.querySelectorAll('tbody tr');
+    // 各行を反復処理してフィルタリング
+    rows.forEach(row => {
+        // 行のテキストコンテンツを取得
+        const textContent = row.textContent.toUpperCase();
+        // テキストボックスの値が行のテキストコンテンツ内に存在するかどうかをチェック
+        if (textContent.includes(filterValue)) {
+            // マッチする場合は表示
+            row.style.display = '';
+        } else {
+            // マッチしない場合は非表示
+            row.style.display = 'none';
+        }
+    });
+}

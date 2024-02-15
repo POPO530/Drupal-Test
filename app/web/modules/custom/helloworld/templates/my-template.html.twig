@@ -3,6 +3,8 @@
 <!-- テスト用Twigテンプレート -->
 <p>Test twig template!</p>
 
+<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="検索">
+
 {% if variables is not empty %}
     <!-- データが存在する場合のテーブル -->
     <table>
