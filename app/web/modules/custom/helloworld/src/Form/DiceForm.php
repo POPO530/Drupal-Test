@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 class DiceForm extends FormBase {
 
     public function getFormId() {
-        // このフォームの識別子を返す
         return 'helloworld_dice_form';
     }
 
@@ -31,6 +30,13 @@ class DiceForm extends FormBase {
         $form['submit'] = [
             '#type' => 'submit',
             '#value' => $this->t('サイコロを振る'),
+        ];
+
+        // データをリセットするボタンを追加する
+        $form['reset'] = [
+            '#type' => 'submit',
+            '#value' => $this->t('統計情報をリセットする'),
+            '#submit' => ['::resetStatistics'],
         ];
     
         // サイコロの統計情報を取得するクエリを実行し、結果を変数に格納する
@@ -99,5 +105,14 @@ class DiceForm extends FormBase {
                 ])
                 ->execute();
         }
+    }
+
+    // 統計情報をリセットする処理
+    public function resetStatistics() {
+        // データベースから統計情報を削除する
+        \Drupal::database()->truncate('helloworld_dice')->execute();
+
+        // メッセージを表示する
+        \Drupal::messenger()->addMessage($this->t('統計情報がリセットされました。'));
     }
 }
