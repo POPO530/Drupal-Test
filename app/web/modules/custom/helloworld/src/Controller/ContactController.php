@@ -2,187 +2,130 @@
 
 namespace Drupal\helloworld\Controller;
 
-use Drupal;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal; // Drupal名前空間をインポート
+use Symfony\Component\HttpFoundation\Request; // SymfonyのRequestクラスをインポート
+use Symfony\Component\HttpFoundation\RedirectResponse; // SymfonyのRedirectResponseクラスをインポート
 
 class ContactController extends HelloWorldBaseController {
 
     public function index(Request $request) {
-        // エラーを格納する配列とリクエストからの全入力データを初期化
-        $errors = [];
-        $posts = $request->request->all();
-    
-        // 入力データがある場合の処理
-        if ($posts) {
-            // 各フィールドのデータを取得し、存在しない場合はnullを設定
-            $name = $posts['name'] ?? null;
-            $email = $posts['email'] ?? null;
-            $phone = $posts['phone'] ?? null;
-            $message = $posts['message'] ?? null;
-    
-            // 名前のバリデーション
-            if (empty($name)) {
-                $errors[] = "名前は必須です。";
-            } elseif (strlen($name) > 50) {
-                $errors[] = "名前は50文字以下である必要があります。";
-            }
-    
-            // メールアドレスのバリデーション
-            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = "有効なメールアドレスを入力してください。";
-            }
-    
-            // 電話番号のバリデーション
-            if (empty($phone)) {
-                $errors[] = "電話番号は必須です。";
-            } elseif (!preg_match('/^\d{10,15}$/', $phone)) {
-                $errors[] = "電話番号は10〜15桁の数字である必要があります。";
-            }
-    
-            // メッセージのバリデーション
-            if (empty($message)) {
-                $errors[] = "メッセージは必須です。";
-            } elseif (strlen($message) < 10 || strlen($message) > 500) {
-                $errors[] = "メッセージは10文字以上500文字以下である必要があります。";
-            }
-    
-            // バリデーションエラーがない場合、データベースに保存し、成功メッセージを表示
-            if (empty($errors)) {
-                $this->database->insert('helloworld_contact2')
-                    ->fields([
-                        'name' => $name,
-                        'email' => $email,
-                        'phone' => $phone,
-                        'message' => $message,
-                    ])
-                    ->execute();
-                Drupal::messenger()->addMessage($this->t('お問い合わせありがとうございます。'));
+        if ($request->isMethod('POST')) { // リクエストがPOSTメソッドかどうかを確認
+            $errors = $this->validateContactForm($request->request->all()); // フォームデータをバリデーションする
+            
+            if (empty($errors)) { // エラーがない場合
+                $this->saveContact($request->request->all()); // フォームデータを保存する
+                Drupal::messenger()->addMessage($this->t('お問い合わせありがとうございます。')); // 成功メッセージを表示
+            } else { // エラーがある場合
+                foreach ($errors as $error) { // 各エラーメッセージに対して
+                    Drupal::messenger()->addError($error); // エラーメッセージを表示
+                }
             }
         }
-    
-        // バリデーションエラーがある場合、それぞれのエラーを表示
-        if (is_array($errors) && count($errors) !== 0) {
-            foreach ($errors as $error) {
-                Drupal::messenger()->addError($error);
-            }
-        }
-    
-        // テンプレートを使用してレンダリング
-        return $this->renderTemplate('contact-template', $this->t('bugfix'));
+        
+        return $this->renderTemplate('contact-template', $this->t('bugfix')); // テンプレートをレンダリング
     }
 
     public function display() {
-        // データベースからhelloworld_contact2テーブルを選択し、必要なフィールドを指定するクエリを作成
-        $query = $this->database->select('helloworld_contact2', 'hc')
-            ->fields('hc', ['id', 'name', 'email', 'phone', 'message']);
-    
-        // クエリを実行して結果を取得
-        $results = $query->execute()->fetchAll();
-    
-        // 取得した結果をcontact-display-templateテンプレートに渡してレンダリング
-        return $this->renderTemplate('contact-display-template', $results);
+        $results = $this->getContactInformation(); // 連絡先情報を取得
+        return $this->renderTemplate('contact-display-template', $results); // テンプレートをレンダリング
     }
 
     public function edit($contact_id, Request $request) {
-        // エラーを格納する配列を初期化
-        $errors = [];
-    
-        // POSTメソッドのリクエストの場合の処理
-        if ($request->isMethod('POST')) {
-            // リクエストから入力データを取得
-            $posts = $request->request->all();
-            $name = $posts['name'] ?? null;
-            $email = $posts['email'] ?? null;
-            $phone = $posts['phone'] ?? null;
-            $message = $posts['message'] ?? null;
-    
-            // 名前のバリデーション
-            if (empty($name)) {
-                $errors[] = "名前は必須です。";
-            } elseif (strlen($name) > 50) {
-                $errors[] = "名前は50文字以下である必要があります。";
-            }
-    
-            // メールアドレスのバリデーション
-            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = "有効なメールアドレスを入力してください。";
-            }
-    
-            // 電話番号のバリデーション
-            if (empty($phone)) {
-                $errors[] = "電話番号は必須です。";
-            } elseif (!preg_match('/^\d{10,15}$/', $phone)) {
-                $errors[] = "電話番号は10〜15桁の数字である必要があります。";
-            }
-    
-            // メッセージのバリデーション
-            if (empty($message)) {
-                $errors[] = "メッセージは必須です。";
-            } elseif (strlen($message) < 10 || strlen($message) > 500) {
-                $errors[] = "メッセージは10文字以上500文字以下である必要があります。";
-            }
-    
-            // バリデーションエラーがなければ、データベースを更新
-            if (empty($errors)) {
-                $this->database->update('helloworld_contact2')
-                    ->fields([
-                        'name' => $name,
-                        'email' => $email,
-                        'phone' => $phone,
-                        'message' => $message,
-                    ])
-                    ->condition('id', $contact_id)
-                    ->execute();
-                // 更新完了メッセージを表示し、表示ページにリダイレクト
-                Drupal::messenger()->addMessage($this->t('更新完了しました。'));
-                return new RedirectResponse('/test/contact/display');
+        $errors = $this->validateContactForm($request->request->all()); // フォームデータをバリデーションする
+
+        if (empty($errors)) { // エラーがない場合
+            $this->updateContact($contact_id, $request->request->all()); // 連絡先を更新
+            Drupal::messenger()->addMessage($this->t('更新完了しました。')); // 成功メッセージを表示
+            return new RedirectResponse('/test/contact/display'); // 表示ページにリダイレクト
+        } else { // エラーがある場合
+            foreach ($errors as $error) { // 各エラーメッセージに対して
+                Drupal::messenger()->addError($error); // エラーメッセージを表示
             }
         }
-    
-        // 指定された連絡先IDに基づいて連絡先情報を取得
-        $query = $this->database->select('helloworld_contact2', 'hc')
-            ->fields('hc')
-            ->condition('id', $contact_id);
-        $contact = $query->execute()->fetchAssoc();
-    
-        // 連絡先が見つからない場合の処理
-        if (!$contact) {
-            Drupal::messenger()->addError('連絡先が見つかりません。');
-            return new RedirectResponse('/test/contact/display');
-        }
-    
-        // バリデーションエラーがある場合、エラーメッセージを表示
-        if (is_array($errors) && count($errors) !== 0) {
-            foreach ($errors as $error) {
-                Drupal::messenger()->addError($error);
-            }
-        }
-    
-        // 編集フォームをレンダリングし、既存の連絡先情報を表示
-        return $this->renderTemplate('contact-edit-template', $contact);
+
+        $contact = $this->getContactById($contact_id); // 指定された連絡先IDの情報を取得
+        return $this->renderTemplate('contact-edit-template', $contact); // 編集テンプレートをレンダリング
     }
 
     public function delete($contact_id) {
-        // 指定されたIDの連絡先をデータベースから取得
-        $query = $this->database->select('helloworld_contact2', 'hc')
-            ->fields('hc')
-            ->condition('id', $contact_id);
-        $contact = $query->execute()->fetchAssoc();
-    
-        // 連絡先が見つからない場合の処理
-        if (!$contact) {
-            Drupal::messenger()->addError('連絡先が見つかりません。');
-            return new RedirectResponse('/test/contact/display');
+        $this->deleteContact($contact_id); // 連絡先を削除
+        Drupal::messenger()->addMessage('削除完了しました'); // 削除完了メッセージを表示
+        return new RedirectResponse('/test/contact/display'); // 表示ページにリダイレクト
+    }
+
+    // フォームデータをバリデーションするメソッド
+    private function validateContactForm($formData) {
+        $errors = []; // エラーメッセージを格納する配列を初期化
+
+        if (empty($formData['name'])) { // 名前が空かどうかを確認
+            $errors[] = "名前は必須です。"; // エラーメッセージを配列に追加
+        } elseif (strlen($formData['name']) > 50) { // 名前が50文字を超えているかどうかを確認
+            $errors[] = "名前は50文字以下である必要があります。"; // エラーメッセージを配列に追加
         }
-    
-        // データベースから連絡先を削除
-        $this->database->delete('helloworld_contact2')
-            ->condition('id', $contact_id)
-            ->execute();
-    
-        // 削除完了のメッセージを表示し、連絡先表示ページにリダイレクト
-        Drupal::messenger()->addMessage('削除完了しました');
-        return new RedirectResponse('/test/contact/display');
+
+        if (empty($formData['email']) || !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) { // メールアドレスが空か、または有効でないかどうかを確認
+            $errors[] = "有効なメールアドレスを入力してください。"; // エラーメッセージを配列に追加
+        }
+
+        if (empty($formData['phone'])) { // 電話番号が空かどうかを確認
+            $errors[] = "電話番号は必須です。"; // エラーメッセージを配列に追加
+        } elseif (!preg_match('/^\d{10,15}$/', $formData['phone'])) { // 電話番号が10〜15桁の数字であるかどうかを確認
+            $errors[] = "電話番号は10〜15桁の数字である必要があります。"; // エラーメッセージを配列に追加
+        }
+
+        if (empty($formData['message'])) { // メッセージが空かどうかを確認
+            $errors[] = "メッセージは必須です。"; // エラーメッセージを配列に追加
+        } elseif (strlen($formData['message']) < 10 || strlen($formData['message']) > 500) { // メッセージが10文字未満または500文字を超えているかどうかを確認
+            $errors[] = "メッセージは10文字以上500文字以下である必要があります。"; // エラーメッセージを配列に追加
+        }
+
+        return $errors; // エラーメッセージの配列を返す
+    }
+
+    // データベースに連絡先情報を保存するメソッド
+    private function saveContact($formData) {
+        $this->database->insert('helloworld_contact2') // 'helloworld_contact2' テーブルに挿入
+            ->fields([ // フィールドを指定
+                'name' => $formData['name'], // 名前
+                'email' => $formData['email'], // メールアドレス
+                'phone' => $formData['phone'], // 電話番号
+                'message' => $formData['message'], // メッセージ
+            ])
+            ->execute(); // 実行
+    }
+
+    // 連絡先情報を取得するメソッド
+    private function getContactInformation() {
+        $query = $this->database->select('helloworld_contact2', 'hc') // 'helloworld_contact2' テーブルを選択
+            ->fields('hc', ['id', 'name', 'email', 'phone', 'message']); // フィールドを指定
+        return $query->execute()->fetchAll(); // クエリを実行し、結果を取得
+    }
+
+    // 連絡先を更新するメソッド
+    private function updateContact($contact_id, $formData) {
+        $this->database->update('helloworld_contact2') // 'helloworld_contact2' テーブルを更新
+            ->fields([ // 更新するフィールドを指定
+                'name' => $formData['name'], // 名前
+                'email' => $formData['email'], // メールアドレス
+                'phone' => $formData['phone'], // 電話番号
+                'message' => $formData['message'], // メッセージ
+            ])
+            ->condition('id', $contact_id) // 条件を指定
+            ->execute(); // 実行
+    }
+
+    // 指定されたIDの連絡先情報を取得するメソッド
+    private function getContactById($contact_id) {
+        $query = $this->database->select('helloworld_contact2', 'hc') // 'helloworld_contact2' テーブルを選択
+            ->fields('hc') // フィールドを指定
+            ->condition('id', $contact_id); // 条件を指定
+        return $query->execute()->fetchAssoc(); // クエリを実行し、結果を取得
+    }
+
+    // 指定されたIDの連絡先を削除するメソッド
+    private function deleteContact($contact_id) {
+        $this->database->delete('helloworld_contact2') // 'helloworld_contact2' テーブルから削除
+            ->condition('id', $contact_id) // 条件を指定
+            ->execute(); // 実行
     }
 }
