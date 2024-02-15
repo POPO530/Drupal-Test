@@ -21,9 +21,7 @@ class HelloController extends HelloWorldBaseController {
         // Contact クラスのインスタンスを作成し、データベース接続サービスとテーブル名を渡す
         $contact = new Contact($connection, "helloworld_contact2");
 
-        for ($i = 0; $i < rand(10, 100); $i++) {
-            $contact->delete(rand(1, $contact->getId()));
-        }
+        $contact->delete($contact->getId());
 
         $contactData = [
             'name' => $this->generateRandomName(), // ランダムな名前を生成
