@@ -1,13 +1,10 @@
-{# helloworld/templates/my-template.html.twig #}
-{# このテンプレートは、helloworld モジュールで使用されます。#}
-
-{# タブのテンプレートをインクルードします #}
 {% include '@helloworld/tab-template.html.twig' %}
 
-{# 静的なテキストを表示します。#}
+<!-- テスト用Twigテンプレート -->
 <p>Test twig template!</p>
 
 {% if variables is not empty %}
+    <!-- データが存在する場合のテーブル -->
     <table>
         <thead>
             <tr>
@@ -19,12 +16,13 @@
             </tr>
         </thead>
         <tbody>
-            {# ここにデータが入る #}
+            {# データがここに入る #}
         </tbody>
     </table>
 {% else %}
+    <!-- データが存在しない場合のメッセージ -->
     <p>No contacts found.</p>
 {% endif %}
 
-{# JavaScriptファイルを読み込む #}
+<!-- JavaScriptファイルの読み込み -->
 {{ attach_library('helloworld/helloworld.accordion') }}

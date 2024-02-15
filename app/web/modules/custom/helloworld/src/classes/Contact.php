@@ -1,14 +1,12 @@
 <?php
 
-// Drupal\helloworld\classes ネームスペースに Contact クラスを定義します。
 namespace Drupal\helloworld\classes;
 
-// Symfony の RedirectResponse クラスをインポートします。
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-// Contact クラスの定義
 class Contact extends AbstractContact {
+    // JSON形式のリストを取得するメソッド
     public function getJsonList() {
         try {
             // テーブルから全てのフィールドを取得するためのクエリを作成します。
@@ -16,14 +14,13 @@ class Contact extends AbstractContact {
             $query->fields('tn');
             // クエリを実行して結果を取得し、フェッチします。
             $result = $query->execute();
-            $list = $result->fetchAll(); // 取得した結果を変数に格納します。
-            
+            $list = $result->fetchAll();
             // JSON形式でデータを返します。
             return new JsonResponse($list);
         } catch(\Exception $e) {
             // エラーログを記録します。
             \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
-            // エラー処理
+            // エラー時は空の配列を返します。
             return [];
         }
     }
@@ -46,7 +43,7 @@ class Contact extends AbstractContact {
         } catch(\Exception $e) {
             // エラーログを記録します。
             \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
-            // エラー処理
+            // エラー時は null を返します。
             return null;
         }
     }
@@ -65,9 +62,8 @@ class Contact extends AbstractContact {
         } catch(\Exception $e) {
             // エラーログを記録します。
             \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
-            // エラー処理
+            // エラーメッセージを表示し、リダイレクトレスポンスを返します。
             \Drupal::messenger()->addError('削除中にエラーが発生しました');
-            // リダイレクトレスポンスを返します。
             return new RedirectResponse('/dice');
         }
     }
@@ -82,9 +78,8 @@ class Contact extends AbstractContact {
         } catch(\Exception $e) {
             // エラーログを記録します。
             \Drupal::logger('helloworld')->error("Error: " . $e->getMessage());
-            // エラー処理
+            // エラーメッセージを表示し、リダイレクトレスポンスを返します。
             \Drupal::messenger()->addError('データの挿入中にエラーが発生しました');
-            // リダイレクトレスポンスを返します。
             return new RedirectResponse('/dice');
         }
     }

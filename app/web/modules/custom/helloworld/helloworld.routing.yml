@@ -1,6 +1,3 @@
-# Drupalモジュールのルーティング設定ファイル。
-# このファイルは、特定のURLにアクセスされた際に、対応するコントローラの関数やメソッドにリクエストをマッピングします。
-
 # '/test/contact/delete/{contact_id}' パスへのルーティング定義。
 # ContactController クラスの delete メソッドを実行し、指定されたコンタクトの削除を行います。
 # アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。
@@ -62,6 +59,9 @@ helloworld.hello:
   requirements:
     _permission: 'access content'
 
+# '/hello/json' パスへのルーティング定義。
+# HelloController クラスの getJson メソッドを実行します。
+# アクセスは 'access content' パーミッションを持つユーザーに限定されます。
 helloworld.hello_json:
   path: '/hello/json'
   defaults:

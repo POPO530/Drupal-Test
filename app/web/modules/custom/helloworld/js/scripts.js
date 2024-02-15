@@ -1,24 +1,22 @@
+// DOMContentLoaded イベントが発生したときに実行される関数
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.tabs-navigation a');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function(event) {
-        // 以前のアクティブなタブのスタイルを削除
-        tabs.forEach(t => t.parentNode.classList.remove('active-tab'));
-  
-        // クリックされたタブにアクティブなスタイルを適用
-        tab.parentNode.classList.add('active-tab');
-  
-        // タブに紐づくコンテンツの表示を切り替えるためのコードをここに追加できます
-        // 例えば、表示したいコンテンツに対応するIDやクラスに基づいて
-        // 必要な表示/非表示のロジックを実装できます。
-      });
-    });
-  
-    // URLからアクティブなタブを判断する
-    const currentPath = window.location.pathname;
-    tabs.forEach(tab => {
-      if(tab.getAttribute('href') === currentPath) {
-        tab.parentNode.classList.add('active-tab');
-      }
+  // タブ要素のリストを取得
+  const tabs = document.querySelectorAll('.tabs-navigation a');
+  // 各タブにクリックイベントリスナーを追加
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(event) {
+      // すべてのタブからアクティブなスタイルを削除
+      tabs.forEach(t => t.parentNode.classList.remove('active-tab'));
+      // クリックされたタブにアクティブなスタイルを追加
+      tab.parentNode.classList.add('active-tab');
     });
   });
+
+  // 現在のURLからアクティブなタブを判断
+  const currentPath = window.location.pathname;
+  tabs.forEach(tab => {
+    if(tab.getAttribute('href') === currentPath) {
+      tab.parentNode.classList.add('active-tab');
+    }
+  });
+});

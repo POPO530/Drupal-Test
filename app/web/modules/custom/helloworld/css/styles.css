@@ -1,35 +1,35 @@
 /* タブの基本スタイル */
 .tabs-navigation {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: left;
-    position: relative;
-    border-bottom: 1px solid #333;
-  }
+  list-style: none; /* リストのマーカーを非表示にする */
+  padding: 0; /* 内側の余白を0に設定 */
+  margin: 0; /* 外側の余白を0に設定 */
+  display: flex; /* 要素を横並びに配置する */
+  justify-content: left; /* 左寄せに配置 */
+  position: relative; /* 相対位置付け */
+  border-bottom: 1px solid #333; /* 下部に1ピクセルの境界線を描画 */
+}
 
-  ul.tabs-navigation > li {
-    position: relative;
-    bottom: -1px;
-  }
-  
-  .tabs-navigation a {
-    text-decoration: none;
-    color: #0044ff;
-    display: block;
-    padding: 10px;
-    background-color: #e0e0e0;
-    transition: background-color 0.3s; /* 背景色の変更にアニメーションを追加 */
-    border: 1px solid #333; /* ボーダーを強調 */
-  }
-  
-  .tabs-navigation a:hover {
-    background-color: #e9e9e9; /* ホバー時の背景色 */
-  }
-  
-  /* アクティブタブのスタイル */
-  .active-tab a {
-    background-color: #ffffff; /* アクティブなタブの背景色 */
-    border-bottom: 1px solid #ffffff; /* ボーダーを強調 */
-  }
+ul.tabs-navigation > li {
+  position: relative;
+  bottom: -1px;
+}
+
+.tabs-navigation a {
+  text-decoration: none; /* テキスト装飾をなしにする */
+  color: #0044ff; /* テキストカラーを指定 */
+  display: block; /* ブロックレベル要素に変換 */
+  padding: 10px; /* 内側の余白を指定 */
+  background-color: #e0e0e0; /* 背景色を指定 */
+  transition: background-color 0.3s; /* 背景色の変化に0.3秒のトランジションを追加 */
+  border: 1px solid #333; /* 境界線を指定 */
+}
+
+.tabs-navigation a:hover {
+  background-color: #e9e9e9; /* ホバー時の背景色 */
+}
+
+/* アクティブタブのスタイル */
+.active-tab a {
+  background-color: #ffffff; /* アクティブなタブの背景色 */
+  border-bottom: 1px solid #ffffff; /* 下部の境界線を白に設定 */
+}

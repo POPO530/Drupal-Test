@@ -1,3 +1,6 @@
+# helloworld.accordionセクション
 helloworld.accordion:
+  # jsキー
   js:
+    # helloworld.jsファイルへのパスを指定
     /modules/custom/helloworld/js/helloworld.js: {}

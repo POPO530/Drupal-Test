@@ -21,14 +21,15 @@ abstract class AbstractContact {
         }
     }
 
+    // JSON形式のリストを取得するメソッド（サブクラスで実装される）
     abstract public function getJsonList();
 
-    // 抽象メソッド：条件に基づいて id を取得するメソッド
+    // 条件に基づいてIDを取得するメソッド（サブクラスで実装される）
     abstract public function getId($condition = []);
 
-    // 抽象メソッド：指定された id のエントリを削除するメソッド
+    // 指定されたIDのエントリを削除するメソッド（サブクラスで実装される）
     abstract public function delete($deleteId);
     
-    // 抽象メソッド：データをセットするメソッド
+    // データをセットするメソッド（サブクラスで実装される）
     abstract public function set($data);
 }

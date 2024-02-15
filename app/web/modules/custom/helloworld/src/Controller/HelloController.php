@@ -10,22 +10,17 @@ class HelloController extends HelloWorldBaseController {
      * コンテンツを処理するメソッド
      * このメソッドでは、Contact クラスを使用してデータベースの操作を行います。
      * まず、指定されたテーブル名を使って Contact オブジェクトを作成します。
-     * 次に、getList メソッドを使ってデータベースからリストを取得します。
-     * 次に、delete メソッドを使用して id が 5 のエントリを削除します。
-     * その後、新しいデータを挿入するために、データの連想配列を作成し、set メソッドを使用して挿入します。
-     * 最後に、リストとともにテンプレートをレンダリングして返します。
+     * 次に、ランダムな回数だけエントリを削除します。
+     * その後、新しいデータを挿入するための連想配列を作成し、データベースに挿入します。
+     * 最後に、テンプレートをレンダリングして返します。
      */
     public function content() {
-        // Contact クラスのインスタンスを作成し、指定されたテーブル名を渡します
         $contact = new Contact("helloworld_contact2");
 
-        // ランダムな回数だけエントリを削除します
         for ($i = 0; $i < rand(10, 100); $i++) {
-            // id がランダムに選択されたエントリを削除します
             $contact->delete(rand(1, $contact->getId()));
         }
 
-        // 新しいデータを挿入するための連想配列を作成します
         $contactData = [
             'name' => 'John Doe',
             'email' => 'john@example.com',
@@ -33,19 +28,23 @@ class HelloController extends HelloWorldBaseController {
             'message' => 'Hello, world!'
         ];
 
-        // 連想配列を使って新しいデータを挿入します
         $contact->set($contactData);
 
-        // テンプレートをレンダリングしてリストと共に返します
         return $this->renderTemplate('my-template', 'bugfix');
     }
 
+    /**
+     * JSONリストを取得するメソッド
+     */
     public function getJson() {
         $contact = new Contact("helloworld_contact2");
         $list = $contact->getJsonList();
         return $list;
     }
 
+    /**
+     * 提出内容を表示するメソッド
+     */
     public function showSubmissions() {
         // テーブルのヘッダーを定義
         $header = [
@@ -54,7 +53,7 @@ class HelloController extends HelloWorldBaseController {
             'data3' => $this->t('Email'),
             'data4' => $this->t('Message'),
         ];
-    
+
         // データベースからのデータを格納するための配列を初期化
         $rows = [];
         // データベースクエリを定義

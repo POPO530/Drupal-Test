@@ -1,7 +1,12 @@
-# 'HelloWorld Example' メニューリンク定義。
+# 'HelloWorld Example' メニューリンクの定義
 helloworld.hello:
-  title: 'HelloWorld Example'  # メニューリンクのタイトル。
-  route_name: helloworld.hello  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。
-  parent: system.admin_structure  # このリンクが属する親メニュー項目。
-  description: "HelloWorldモジュールの例"  # リンクの説明。
-  expanded: TRUE  # メニュー項目がデフォルトで展開されるかどうか。
+  # メニューリンクのタイトル
+  title: 'HelloWorld Example'
+  # このリンクが指すルート名。'helloworld.routing.yml'で定義されている。
+  route_name: helloworld.hello
+  # このリンクが属する親メニュー項目
+  parent: system.admin_structure
+  # リンクの説明
+  description: "HelloWorldモジュールの例"
+  # メニュー項目がデフォルトで展開されるかどうか
+  expanded: TRUE

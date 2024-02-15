@@ -1,7 +1,10 @@
 {% if variables is not empty %}
+    <!-- 変数が空でない場合、連絡先の編集フォームを表示 -->
     <form action="/test/contact/edit/{{ variables.id }}" method="post">
+        <!-- フォームのテーブル -->
         <table>
             <thead>
+                <!-- テーブルのヘッダー行 -->
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -10,6 +13,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- 連絡先のデータをフォームに埋め込む -->
                 <tr>
                     <td><input type="text" name="name" value="{{ variables.name }}"></td>
                     <td><input type="email" name="email" value="{{ variables.email }}"></td>
@@ -18,8 +22,10 @@
                 </tr>
             </tbody>
         </table>
+        <!-- 更新ボタン -->
         <input type="submit" value="Update">
     </form>
 {% else %}
+    <!-- 変数が空の場合、メッセージを表示 -->
     <p>No contact found.</p>
 {% endif %}

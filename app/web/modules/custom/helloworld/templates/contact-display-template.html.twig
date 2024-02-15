@@ -1,9 +1,10 @@
-{# タブのテンプレートをインクルードします #}
 {% include '@helloworld/tab-template.html.twig' %}
 
 {% if variables is not empty %}
+    <!-- 変数が空でない場合、連絡先のテーブルを表示 -->
     <table>
         <thead>
+            <!-- テーブルのヘッダー行 -->
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -13,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-        
+            <!-- 変数ごとに行を反復処理 -->
             {% for variable in variables %}
                 <tr>
                     <td>{{ variable.name }}</td>
@@ -31,5 +32,6 @@
         </tbody>
     </table>
 {% else %}
+    <!-- 変数が空の場合、メッセージを表示 -->
     <p>No contacts found.</p>
 {% endif %}
