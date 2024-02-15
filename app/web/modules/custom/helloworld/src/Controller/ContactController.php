@@ -97,7 +97,8 @@ class ContactController extends HelloWorldBaseController {
     // 連絡先情報を取得するメソッド
     private function getContactInformation() {
         $query = $this->database->select('helloworld_contact2', 'hc') // 'helloworld_contact2' テーブルを選択
-            ->fields('hc', ['id', 'name', 'email', 'phone', 'message']); // フィールドを指定
+            ->fields('hc', ['id', 'name', 'email', 'phone', 'message']) // フィールドを指定
+            ->orderBy('hc.id', 'DESC'); // idフィールドを降順で並び替え
         return $query->execute()->fetchAll(); // クエリを実行し、結果を取得
     }
 
