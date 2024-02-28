@@ -146,7 +146,7 @@
         const prizeDisplayDiv = $('#prizeDisplay', context);
         // もし該当するDIV要素が存在しない場合、body要素に新しいDIV要素を追加します。
         if (!prizeDisplayDiv.length) {
-          $('body').append('<div id="prizeDisplay" style="margin-top: 20px;"></div>');
+          $('body').append('<div id="prizeDisplay"></div>');
         }
         // 賞品表示用DIVの中身を初期化し、タイトルを設定します。
         $('#prizeDisplay').html('<h4>各賞の残り数:</h4>');
