@@ -108,36 +108,60 @@
       return array;
     };
 
-      // 結果表示を更新する関数
+      // 画面上に表示されるくじの結果を更新する関数を定義します。
       const updateResultsDisplay = () => {
-        // 残りのくじ数を画面上に表示します。'remainingTickets'変数の値を、指定されたDOM要素のテキストとして設定します。
+        // 残りのくじの枚数を表示する要素にテキストとして現在の残りくじ数を設定します。
         $('#remainingTickets', context).text(remainingTickets);
-        // 結果を表示するDIV要素を取得します。この要素内に、各くじの結果または未開封の状態を表示します。
+        
+        // くじの結果を表示するためのdiv要素（#results）を取得します。
         const resultsDiv = $('#results', context);
-        // resultsDivがページ上に存在する場合のみ、以下の処理を実行します。
+        
+        // resultsDivがDOM上に存在する場合のみ、以下の処理を実行します。
         if (resultsDiv.length > 0) {
-          // まず、resultsDivの内容を空にします。これにより、前回の結果表示がクリアされます。
+          // resultsDivの内容を空にします。これにより、以前のくじ結果表示がクリアされます。
           resultsDiv.html('');
-          // 引かれたくじの結果に基づいて、結果の表示を更新します。
+          
+          // 引かれたくじの結果を配列でループ処理します。各くじの結果（result）とそのインデックス（index）を使用します。
           drawResult.forEach((result, index) => {
-            // 各くじの結果を表示するための新しいDIV要素を作成します。
+            // 新しいdiv要素を作成します。
             const resultElement = $('<div></div>');
-            // くじが明かされている場合はその結果を、明かされていない場合は「未開封」と表示します。
-            const text = revealed.includes(index) ? drawResult[index] : `くじ#${index + 1} 未開封`;
-            // 作成したDIV要素にテキストを設定します。
-            resultElement.text(text);
-            // DIV要素にクラスを適用します。
-            resultElement.addClass('result-element');
-            // DIV要素にクリックイベントリスナーを追加します。くじが未開封の場合に限り、クリック時にそのくじを明かし、結果を表示し、以降のクリックイベントを無効化します。
+            
+            // くじが既に明かされているかどうかをチェックし、結果または「くじ＃インデックス」のテキストを設定します。
+            const text = revealed.includes(index) ? drawResult[index] : `くじ#${index + 1}`;
+            
+            // 作成したdiv要素にテキスト、クラス、およびスタイルを設定し、resultsDivに追加します。
+            resultElement.text(text)
+              .addClass('result-element') // クラスを追加します。
+              .css({ // CSSスタイルを直接適用します。
+                'transition': 'transform 0.6s ease', // 回転のトランジションを設定します。
+                'transform': 'rotateY(0deg)' // 初期状態では回転していない状態を設定します。
+              })
+              .appendTo(resultsDiv); // resultsDivにこの要素を追加します。
+
+            // 作成したくじのdiv要素に対して、クリックイベントをバインドします。
             resultElement.on('click', function() {
+              // このくじがまだ明かされていない場合のみ、以下の処理を実行します。
               if (!revealed.includes(index)) {
-                revealTicket(index);
-                $(this).text(drawResult[index]);
-                $(this).off('click');
+                // くじをクリックした際に180度Y軸回転させるアニメーションを開始します。
+                $(this).css('transform', 'rotateY(180deg)');
+
+                // アニメーションの完了を待つために、setTimeoutを使用します。
+                setTimeout(() => {
+                  // 回転を360度に設定して元に戻し、くじの結果を表示します。
+                  $(this).css({
+                    'transform': 'rotateY(360deg)' // 元の向きに戻すため360度回転させます。
+                  });
+
+                  // revealTicket関数を呼び出して、くじの結果を処理します。
+                  revealTicket(index);
+                  // くじの結果をテキストとして設定します。
+                  $(this).text(drawResult[index]);
+
+                  // 一度クリックされたら、それ以上のクリックイベントを無効にします。
+                  $(this).off('click');
+                }, 600); // アニメーションの持続時間（600ミリ秒）を設定します。
               }
             });
-            // 更新された結果のDIV要素をresultsDivに追加します。
-            resultsDiv.append(resultElement);
           });
         }
       };
