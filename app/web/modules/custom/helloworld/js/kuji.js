@@ -118,8 +118,8 @@
             const text = revealed.includes(index) ? drawResult[index] : `くじ#${index + 1} 未開封`;
             // 作成したDIV要素にテキストを設定します。
             resultElement.text(text);
-            // DIV要素にスタイルを適用します。クリック可能な見た目にするためにカーソルをポインタに設定し、マージン、パディング、ボーダー、表示スタイルを設定します。
-            resultElement.css({'cursor': 'pointer', 'margin': '5px', 'padding': '5px', 'border': '1px solid #ccc', 'display': 'inline-block'});
+            // DIV要素にクラスを適用します。
+            resultElement.addClass('result-element');
             // DIV要素にクリックイベントリスナーを追加します。くじが未開封の場合に限り、クリック時にそのくじを明かし、結果を表示し、以降のクリックイベントを無効化します。
             resultElement.on('click', function() {
               if (!revealed.includes(index)) {
