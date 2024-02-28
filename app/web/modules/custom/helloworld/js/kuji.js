@@ -143,32 +143,31 @@
       // 賞品の残り数を表示する関数
       const updatePrizeDisplay = () => {
         // 賞品の残り数を表示するDIV要素を取得します。
-        const prizeDisplayDiv = $('#prizeDisplay', context);
+        let prizeDisplayDiv = $('#prizeDisplay', context);
         // もし該当するDIV要素が存在しない場合、body要素に新しいDIV要素を追加します。
         if (!prizeDisplayDiv.length) {
           $('body').append('<div id="prizeDisplay"></div>');
+          prizeDisplayDiv = $('#prizeDisplay', context); // 新しく追加した要素を取得します。
         }
         // 賞品表示用DIVの中身を初期化し、タイトルを設定します。
-        $('#prizeDisplay').html('<h4>各賞の残り数:</h4>');
+        prizeDisplayDiv.empty().append('<h4>各賞の残り数:</h4>');
         // 賞品の種類ごとに残り数を表示します。
         Object.keys(prizeCounts).sort().forEach(prize => {
           // 賞品の種類とその残り数を含むDIV要素をprizeDisplayに追加します。
-          $('#prizeDisplay').append(`<div>${prize}: ${prizeCounts[prize]}枚</div>`);
+          prizeDisplayDiv.append(`<div class="prize-count">${prize}: ${prizeCounts[prize]}枚</div>`);
         });
       };
+
+      // 'context'がドキュメントのルートである場合にのみ、resetGameを実行します。
+      if (context === document) {
+        resetGame(); // これにより、ページ全体が初めてロードされたときにのみresetGameが実行されます。
+      }
 
       // イベントリスナーを設定
       // 「ゲームをリセットする」ボタンに対して、クリックイベントリスナーを設定します。このイベントは、指定された関数（resetGame）を実行します。
       $('#resetGame', context).once('kujiGame').on('click', resetGame);
       // 「くじを引く」ボタンに対して、クリックイベントリスナーを設定します。このイベントは、指定された関数（drawTickets）を実行します。
       $('#drawTickets', context).once('kujiGame').on('click', drawTickets);
-
-      // ゲームの初期化
-      // ドキュメントが完全に読み込まれた後に、ゲームをリセットする関数（resetGame）を実行します。
-      // これにより、ページの読み込みが完了した時点でゲームが初期状態にリセットされ、準備が整います。
-      $(document).ready(function() {
-        resetGame();
-      });
     }
   };
 })(jQuery, Drupal);
