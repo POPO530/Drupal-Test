@@ -1,95 +1,108 @@
+/* アプリ全体のスタイリング */
 #app {
-    font-family: 'Arial', sans-serif;
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    font-family: 'Arial', sans-serif; /* フォントファミリーをArialに設定 */
+    max-width: 600px; /* 最大幅を600pxに設定 */
+    margin: auto; /* 左右のマージンを自動で設定し、中央揃えに */
+    padding: 20px; /* 内側の余白を設定 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ボックスシャドウを設定 */
+    border-radius: 8px; /* 角の丸みを設定 */
   }
   
+  /* アプリ内のボタンのスタイリング */
   #app button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    background-color: #007bff; /* 背景色を設定 */
+    color: white; /* テキスト色を白に */
+    border: none; /* 境界線なし */
+    padding: 10px 20px; /* 内側の余白を設定 */
+    margin: 5px; /* 外側の余白を設定 */
+    border-radius: 5px; /* 角の丸みを設定 */
+    cursor: pointer; /* カーソルをポインタに設定 */
+    font-size: 16px; /* フォントサイズを設定 */
   }
   
+  /* ボタンのホバー時のスタイリング */
   #app button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* 背景色を濃い青に変更 */
   }
   
+  /* 数値入力フィールドのスタイリング */
   #app input[type="number"] {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    padding: 10px; /* 内側の余白を設定 */
+    margin: 5px; /* 外側の余白を設定 */
+    border-radius: 5px; /* 角の丸みを設定 */
+    border: 1px solid #ccc; /* 境界線を設定 */
+    font-size: 16px; /* フォントサイズを設定 */
   }
   
+  /* 結果表示エリアのスタイリング */
   #results {
-    margin-top: 20px;
+    margin-top: 20px; /* 上部の余白を設定 */
   }
   
+  /* 各結果のスタイリング */
   #results div {
-    background-color: #f8f9fa;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    background-color: #f8f9fa; /* 背景色を設定 */
+    padding: 10px; /* 内側の余白を設定 */
+    margin-bottom: 10px; /* 下部の余白を設定 */
+    border-radius: 5px; /* 角の丸みを設定 */
+    border: 1px solid #ddd; /* 境界線を設定 */
   }
   
+  /* 残りチケット数表示エリアのスタイリング */
   #remaining {
-    margin-top: 20px;
-    font-weight: bold;
+    margin-top: 20px; /* 上部の余白を設定 */
+    font-weight: bold; /* フォントを太字に */
   }
   
+  /* 残りチケット数のテキスト色を設定 */
   #remainingTickets {
-    color: #007bff;
+    color: #007bff; /* 色を青に設定 */
   }
-
+  
+  /* 賞品表示エリアのスタイリング */
   #prizeDisplay {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 20px; /* 上部の余白を設定 */
+    padding: 15px; /* 内側の余白を設定 */
+    background-color: #f8f8f8; /* 背景色を設定 */
+    border: 1px solid #ddd; /* 境界線を設定 */
+    border-radius: 8px; /* 角の丸みを設定 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* ボックスシャドウを設定 */
   }
   
+  /* 賞品表示エリアのタイトルスタイリング */
   #prizeDisplay h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
+    margin-top: 0; /* 上部の余白をなくす */
+    margin-bottom: 15px; /* 下部の余白を設定 */
+    color: #333; /* 色を暗灰色に */
+    text-align: center; /* 中央揃えに */
   }
   
+  /* 各賞品表示のスタイリング */
   #prizeDisplay div {
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: 1px solid #e7e7e7;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 8px 12px; /* 内側の余白を設定 */
+    margin-bottom: 10px; /* 下部の余白を設定 */
+    background-color: white; /* 背景色を白に */
+    border: 1px solid #e7e7e7; /* 境界線を設定 */
+    border-radius: 4px; /* 角の丸みを設定 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* ボックスシャドウを設定 */
+    display: flex; /* フレックスボックスを使用 */
+    justify-content: space-between; /* 内容物を両端に配置 */
+    align-items: center; /* 項目を中央揃えに */
   }
   
+  /* 最後の賞品表示の下部余白をなくす */
   #prizeDisplay div:last-child {
     margin-bottom: 0;
   }
-
+  
+  /* 結果表示要素のスタイリング */
   .result-element {
-    cursor: pointer;
-    margin: 5px;
-    padding: 10px; /* より見やすくするために少し増やす */
-    border: 1px solid #ccc;
-    display: inline-block;
+    cursor: pointer; /* カーソルをポインタに */
+    margin: 5px; /* 外側の余白を設定 */
+    padding: 10px; /* 内側の余白を増やす */
+    border: 1px solid #ccc; /* 境界線を設定 */
+    display: inline-block; /* インラインブロック表示 */
     border-radius: 5px; /* 角の丸みを追加 */
-    background-color: #f9f9f9; /* 背景色を軽くする */
+    background-color: #f9f9f9; /* 背景色を軽く */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
   }
