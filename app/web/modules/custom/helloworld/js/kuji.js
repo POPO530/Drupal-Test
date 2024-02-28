@@ -127,7 +127,7 @@
             const resultElement = $('<div></div>');
             
             // くじが既に明かされているかどうかをチェックし、結果または「くじ＃インデックス」のテキストを設定します。
-            const text = revealed.includes(index) ? drawResult[index] : `くじ#${index + 1}`;
+            const text = revealed.includes(index) ? drawResult[index] : "一番くじ";
             
             // 作成したdiv要素にテキスト、クラス、およびスタイルを設定し、resultsDivに追加します。
             resultElement.text(text)
