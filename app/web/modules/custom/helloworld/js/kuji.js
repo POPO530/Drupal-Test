@@ -39,7 +39,7 @@
         updatePrizeDisplay();
       };
 
-      // くじを引く関数
+    // くじを引く関数
     const drawTickets = () => {
       // 残りのくじが0以下の場合、くじがなくなったことをユーザーに警告し、関数の実行を停止します。
       if (remainingTickets <= 0) {
@@ -54,13 +54,11 @@
         alert("1枚から10枚の間で選んでください。");
         return;
       }
-      // 実際に引くくじの数を決定します。これは、ユーザーが選択した数になります。
-      let drawCount = selectedCount;
       // 引いたくじの結果を格納する配列と、明かされたくじのインデックスを格納する配列を初期化します。
       drawResult = [];
       revealed = [];
       // 実際にくじを引く処理を行います。選択された回数分だけループを回します。
-      for (let i = 0; i < drawCount; i++) {
+      for (let i = 0; i < selectedCount; i++) {
         // くじボックスから最後の要素を取り出します（くじを引きます）。
         let drawn = box.pop();
         // 引いたくじの結果をdrawResult配列に追加します。
@@ -72,7 +70,7 @@
       updateResultsDisplay();
     };
 
-      // くじを明かす関数
+    // くじを明かす関数
     const revealTicket = (index) => {
       // 引いたくじの結果の中で、まだ明かされていない（revealed配列に含まれていない）くじのみを処理します。
       if (!revealed.includes(index)) {
