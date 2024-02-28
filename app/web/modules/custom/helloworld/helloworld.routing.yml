@@ -1,3 +1,10 @@
+helloworld.kuji:
+  path: '/1kuji'
+  defaults:
+    _controller: '\Drupal\helloworld\Controller\HelloController::kuji'
+  requirements:
+    _permission: 'access content'
+
 # '/test/contact/delete/{contact_id}' パスへのルーティング定義。
 # ContactController クラスの delete メソッドを実行し、指定されたコンタクトの削除を行います。
 # アクセスは 'administer site configuration' パーミッションを持つユーザーに限定されます。

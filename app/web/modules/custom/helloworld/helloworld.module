@@ -3,6 +3,9 @@
 // テーマの定義を返す関数
 function helloworld_theme($existing, $type, $theme, $path) {
   return [
+    'kuji-template' => [
+      'variables' => ['variables' => NULL], // 変数を持つテンプレート
+    ],
     'my-template' => [
       'variables' => ['variables' => NULL], // 変数を持つテンプレート
     ],

@@ -1,6 +1,13 @@
-# helloworld.accordionセクション
+# 既存のライブラリ定義からkuji.jsを削除
 helloworld.accordion:
-  # jsキー
   js:
-    # helloworld.jsファイルへのパスを指定
-    /modules/custom/helloworld/js/helloworld.js: {}
+    js/helloworld.js: {}
+
+# kuji.js用の新しいライブラリを定義
+helloworld.kuji:
+  js:
+    js/kuji.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

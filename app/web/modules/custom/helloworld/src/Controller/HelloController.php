@@ -6,6 +6,10 @@ use Drupal\helloworld\classes\Contact;
 
 class HelloController extends HelloWorldBaseController {
 
+    public function kuji() {
+        return $this->renderTemplate('kuji-template', 'bugfix');
+    }
+
     /**
      * コンテンツを処理するメソッド
      * このメソッドでは、Contact クラスを使用してデータベースの操作を行います。
