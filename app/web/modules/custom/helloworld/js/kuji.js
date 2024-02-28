@@ -147,11 +147,6 @@
 
                 // アニメーションの完了を待つために、setTimeoutを使用します。
                 setTimeout(() => {
-                  // 回転を360度に設定して元に戻し、くじの結果を表示します。
-                  $(this).css({
-                    'transform': 'rotateY(360deg)' // 元の向きに戻すため360度回転させます。
-                  });
-
                   // revealTicket関数を呼び出して、くじの結果を処理します。
                   revealTicket(index);
                   // くじの結果をテキストとして設定します。
