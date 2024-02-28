@@ -48,11 +48,12 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
     <input type=\"number\" id=\"selectedCount\" min=\"1\" max=\"10\" placeholder=\"0\">
     <div id=\"results\"></div>
     <div id=\"remaining\">残りチケット数: <span id=\"remainingTickets\">80</span></div>
+    <div id=\"totalAmount\">使用金額:</div>
 </div>
 
 <!-- JavaScriptファイルの読み込み -->
 ";
-        // line 15
+        // line 16
         echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->extensions['Drupal\Core\Template\TwigExtension']->attachLibrary("helloworld/helloworld.kuji"), "html", null, true);
     }
 
@@ -68,7 +69,7 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  56 => 15,  41 => 2,  39 => 1,);
+        return array (  57 => 16,  41 => 2,  39 => 1,);
     }
 
     public function getSourceContext()
@@ -79,8 +80,8 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
     public function checkSecurity()
     {
         static $tags = array("include" => 1);
-        static $filters = array("escape" => 15);
-        static $functions = array("attach_library" => 15);
+        static $filters = array("escape" => 16);
+        static $functions = array("attach_library" => 16);
 
         try {
             $this->sandbox->checkSecurity(

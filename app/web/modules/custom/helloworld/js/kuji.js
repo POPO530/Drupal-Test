@@ -7,6 +7,8 @@
       let drawResult = []; // 引いたくじの結果
       let revealed = []; // 明かされたくじのインデックス
       let remainingTickets = 80; // 残りのくじ数
+      let totalAmount = 0; // 使用金額を初期化
+      let ticketPrice = 800; // 1枚あたりのくじの価格
       // 各賞品の数
       let prizeCounts = {
         A: 1, B: 1, C: 1, D: 1, E: 1, // 当選賞品
@@ -19,6 +21,7 @@
         drawResult = []; // 引かれたくじの結果を格納する配列を初期化します。プレイヤーがくじを引くたびに、この配列に結果が追加されます。
         revealed = []; // プレイヤーによって明かされたくじのインデックスを格納する配列を初期化します。これにより、どのくじがすでに見られたかを追跡します。
         remainingTickets = 80; // 残りのくじ数を80にリセットします。この数はゲームのスタート時に全くじの数です。
+        totalAmount = 0; // ゲームをリセットするときに使用金額もリセット
 
         // 賞品をボックスに追加するためのループ処理
         for (let prize in prizeCounts) {
@@ -32,11 +35,12 @@
         
         // くじボックスをシャッフルします。この関数は配列を引数に取り、その配列の要素の順番をランダムに入れ替えます。
         box = shuffleArray(box);
-        
         // 結果表示を更新する関数を呼び出します。この関数は現在のくじの残り数を画面上に表示します。
         updateResultsDisplay();
         // 賞品の残り数を表示する関数を呼び出します。この関数は各賞品の残り数を画面上に表示します。
         updatePrizeDisplay();
+        // 使用金額の表示を更新
+        updateTotalAmountDisplay();
       };
 
     // くじを引く関数
@@ -68,6 +72,10 @@
       }
       // 結果表示を更新する関数を呼び出します。この関数は現在のくじの残り数と引いた結果を画面上に表示します。
       updateResultsDisplay();
+      // 選択されたくじの枚数に基づいて使用金額を更新
+      totalAmount += selectedCount * ticketPrice;
+      // 使用金額の表示を更新
+      updateTotalAmountDisplay();
     };
 
     // くじを明かす関数
@@ -156,6 +164,11 @@
           // 賞品の種類とその残り数を含むDIV要素をprizeDisplayに追加します。
           prizeDisplayDiv.append(`<div class="prize-count">${prize}: ${prizeCounts[prize]}枚</div>`);
         });
+      };
+
+      // 使用金額の表示を更新する関数
+      const updateTotalAmountDisplay = () => {
+        $('#totalAmount').html(`使用金額: ${totalAmount}円`);
       };
 
       // 'context'がドキュメントのルートである場合にのみ、resetGameを実行します。
