@@ -134,6 +134,7 @@
                 revealTicket(index);
                 $(this).text(drawResult[index]);
                 $(this).off('click');
+                $(this).addClass('revealed'); // ここでクリックしたくじに'revealed'クラスを追加
               }
             });
             // 更新された結果のDIV要素をresultsDivに追加します。

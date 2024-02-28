@@ -38,7 +38,7 @@
   #results {
     margin-top: 20px; /* 上部の余白を設定 */
   }
-  
+
   /* 各結果のスタイリング */
   #results div {
     background-color: #f8f9fa; /* 背景色を設定 */
@@ -46,6 +46,26 @@
     margin-bottom: 10px; /* 下部の余白を設定 */
     border-radius: 5px; /* 角の丸みを設定 */
     border: 1px solid #ddd; /* 境界線を設定 */
+    cursor: pointer; /* カーソルをポインターに設定 */
+    position: relative; /* 位置を相対位置に設定 */
+    transition: transform 0.6s ease, opacity 0.6s ease; /* トランスフォームと透明度の変化をアニメーション化 */
+  }
+
+  #results div:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8); /* 半透明の白色で覆う */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+
+  #results div.revealed:before {
+    transform: scaleX(1); /* クリックされたら全体を表示 */
   }
   
   /* 残りチケット数表示エリアのスタイリング */
