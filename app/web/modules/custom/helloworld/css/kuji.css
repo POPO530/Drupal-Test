@@ -33,24 +33,12 @@
     border: 1px solid #ccc; /* 境界線を設定 */
     font-size: 16px; /* フォントサイズを設定 */
   }
-
-  /* 結果表示要素のスタイリング */
-  .result-element {
-    cursor: pointer; /* カーソルをポインタに */
-    margin: 5px; /* 外側の余白を設定 */
-    padding: 10px; /* 内側の余白を増やす */
-    border: 1px solid #ccc; /* 境界線を設定 */
-    display: inline-block; /* インラインブロック表示 */
-    border-radius: 5px; /* 角の丸みを追加 */
-    background-color: #f9f9f9; /* 背景色を軽く */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
-  }
   
   /* 結果表示エリアのスタイリング */
   #results {
     margin-top: 20px; /* 上部の余白を設定 */
   }
-
+  
   /* 各結果のスタイリング */
   #results div {
     background-color: #f8f9fa; /* 背景色を設定 */
@@ -58,26 +46,6 @@
     margin-bottom: 10px; /* 下部の余白を設定 */
     border-radius: 5px; /* 角の丸みを設定 */
     border: 1px solid #ddd; /* 境界線を設定 */
-    cursor: pointer; /* カーソルをポインターに設定 */
-    position: relative; /* 位置を相対位置に設定 */
-    transition: opacity 0.6s ease, transform 0.6s ease; /* 透明度と位置の変化をアニメーション化 */
-    opacity: 1; /* 初期状態で不透明 */
-    transform: translateY(0); /* 初期状態で変化なし */
-  }
-
-  #results div.revealed {
-    animation: fadeOutScale 0.6s ease forwards; /* アニメーションを適用 */
-  }
-  
-  @keyframes fadeOutScale {
-    0% {
-      opacity: 1; /* 開始時は完全に不透明 */
-      transform: scale(1); /* 開始時は元のサイズ */
-    }
-    100% {
-      opacity: 0; /* 終了時は完全に透明 */
-      transform: scale(1.1); /* 終了時はわずかに拡大 */
-    }
   }
   
   /* 残りチケット数表示エリアのスタイリング */
@@ -137,4 +105,16 @@
   /* 最後の賞品表示の下部余白をなくす */
   .prize-count:last-child { /* クラス名を変更 */
     margin-bottom: 0;
+  }
+
+  /* 結果表示要素のスタイリング */
+  .result-element {
+    cursor: pointer; /* カーソルをポインタに */
+    margin: 5px; /* 外側の余白を設定 */
+    padding: 10px; /* 内側の余白を増やす */
+    border: 1px solid #ccc; /* 境界線を設定 */
+    display: inline-block; /* インラインブロック表示 */
+    border-radius: 5px; /* 角の丸みを追加 */
+    background-color: #f9f9f9; /* 背景色を軽く */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
   }

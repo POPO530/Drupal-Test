@@ -108,52 +108,36 @@
       return array;
     };
 
-      // updateResultsDisplay関数: 画面に表示されるくじの結果を更新する関数
+      // 結果表示を更新する関数
       const updateResultsDisplay = () => {
-        // 残りのチケット数を表示する要素に現在の残りチケット数を設定します。
+        // 残りのくじ数を画面上に表示します。'remainingTickets'変数の値を、指定されたDOM要素のテキストとして設定します。
         $('#remainingTickets', context).text(remainingTickets);
-
-        // IDが'results'の要素を取得します。この要素はくじの結果を表示するために使用されます。
+        // 結果を表示するDIV要素を取得します。この要素内に、各くじの結果または未開封の状態を表示します。
         const resultsDiv = $('#results', context);
-
-        // resultsDivが存在する場合のみ、以下の処理を実行します。
+        // resultsDivがページ上に存在する場合のみ、以下の処理を実行します。
         if (resultsDiv.length > 0) {
-          // resultsDivの内容を空にします。これにより、前回の結果がクリアされます。
+          // まず、resultsDivの内容を空にします。これにより、前回の結果表示がクリアされます。
           resultsDiv.html('');
-
-          // drawResult配列をループして、各くじの結果に基づいて要素を生成します。
+          // 引かれたくじの結果に基づいて、結果の表示を更新します。
           drawResult.forEach((result, index) => {
-            // 新しいdiv要素を作成し、'result-element'クラスを追加します。
-            // このくじが既に明かされている場合はその結果をテキストとして設定し、
-            // そうでない場合は「くじ#インデックス 未開封」というテキストを設定します。
-            const resultElement = $('<div></div>')
-              .addClass('result-element')
-              .text(revealed.includes(index) ? drawResult[index] : `くじ#${index + 1} 未開封`)
-              .appendTo(resultsDiv); // この要素をresultsDivに追加します。
-
-            // 作成したdiv要素にdata属性を使用してくじのインデックスを保存します。
-            // これにより、後でどのくじがクリックされたかを識別できます。
-            resultElement.data('index', index);
-          });
-
-          // resultsDivに対してクリックイベントをデリゲートします。
-          // これにより、'result-element'クラスを持つすべての要素に対してイベントが適用されます。
-          resultsDiv.off('click').on('click', '.result-element', function() {
-            // クリックされた要素のdata属性からインデックスを取得します。
-            const index = $(this).data('index');
-
-            // このくじがまだ明かされていない場合にのみ処理を実行します。
-            if (!revealed.includes(index)) {
-              // revealTicket関数を呼び出して、くじを明かします。
-              revealTicket(index);
-
-              // クリックされた要素のテキストを更新し、'revealed'クラスを追加して、
-              // これ以上のクリックイベントが発火しないようにします。
-              $(this)
-                .text(drawResult[index])
-                .addClass('revealed')
-                .off('click'); // クリックイベントを無効化します。
-            }
+            // 各くじの結果を表示するための新しいDIV要素を作成します。
+            const resultElement = $('<div></div>');
+            // くじが明かされている場合はその結果を、明かされていない場合は「未開封」と表示します。
+            const text = revealed.includes(index) ? drawResult[index] : `くじ#${index + 1} 未開封`;
+            // 作成したDIV要素にテキストを設定します。
+            resultElement.text(text);
+            // DIV要素にクラスを適用します。
+            resultElement.addClass('result-element');
+            // DIV要素にクリックイベントリスナーを追加します。くじが未開封の場合に限り、クリック時にそのくじを明かし、結果を表示し、以降のクリックイベントを無効化します。
+            resultElement.on('click', function() {
+              if (!revealed.includes(index)) {
+                revealTicket(index);
+                $(this).text(drawResult[index]);
+                $(this).off('click');
+              }
+            });
+            // 更新された結果のDIV要素をresultsDivに追加します。
+            resultsDiv.append(resultElement);
           });
         }
       };
