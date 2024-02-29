@@ -45,16 +45,21 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
 <div id=\"app\">
     <button id=\"resetGame\">ゲームをリセット</button>
     <button id=\"drawTickets\">チケットを引く</button>
-    <input type=\"number\" id=\"selectedCount\" min=\"1\" max=\"10\" placeholder=\"0\">
+    <input type=\"number\" id=\"selectedCount\" min=\"1\" max=\"10\" placeholder=\"入力してください\">
     <div id=\"results\"></div>
     <div id=\"remaining\">残りチケット数: <span id=\"remainingTickets\">80</span></div>
     <div id=\"ticketPrice\">1回800円</div>
     <div id=\"totalAmount\">使用金額:</div>
+    <div id=\"setAmountDiv\">
+        <p>設定金額を入力してください。設定金額以上を引くことはできません。</p>
+        <input type=\"number\" id=\"setAmount\" min=\"800\" max=\"64000\">
+        <button id=\"btn\">設定確定</button>
+    </div>
 </div>
 
 <!-- JavaScriptファイルの読み込み -->
 ";
-        // line 17
+        // line 22
         echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->extensions['Drupal\Core\Template\TwigExtension']->attachLibrary("helloworld/helloworld.kuji"), "html", null, true);
     }
 
@@ -70,7 +75,7 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  58 => 17,  41 => 2,  39 => 1,);
+        return array (  63 => 22,  41 => 2,  39 => 1,);
     }
 
     public function getSourceContext()
@@ -81,8 +86,8 @@ class __TwigTemplate_b2e9f3eb46c1c77c37ecdd9844f555f4 extends \Twig\Template
     public function checkSecurity()
     {
         static $tags = array("include" => 1);
-        static $filters = array("escape" => 17);
-        static $functions = array("attach_library" => 17);
+        static $filters = array("escape" => 22);
+        static $functions = array("attach_library" => 22);
 
         try {
             $this->sandbox->checkSecurity(

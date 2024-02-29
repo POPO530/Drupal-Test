@@ -32,6 +32,7 @@
     border-radius: 5px; /* 角の丸みを設定 */
     border: 1px solid #ccc; /* 境界線を設定 */
     font-size: 16px; /* フォントサイズを設定 */
+    width: 200px; /* 横幅を設定 */
   }
   
   /* 結果表示エリアのスタイリング */

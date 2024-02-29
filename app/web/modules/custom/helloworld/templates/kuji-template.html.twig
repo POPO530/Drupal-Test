@@ -5,12 +5,17 @@
 
 <div id="app">
     <button id="resetGame">ゲームをリセット</button>
-    <button id="drawTickets">チケットを引く</button>
-    <input type="number" id="selectedCount" min="1" max="10" placeholder="0">
+    <button id="drawTickets">一番くじを引く</button>
+    <input type="number" id="selectedCount" min="1" max="10" placeholder="入力してください">
     <div id="results"></div>
     <div id="remaining">残りチケット数: <span id="remainingTickets">80</span></div>
     <div id="ticketPrice">1回800円</div>
     <div id="totalAmount">使用金額:</div>
+    <div id="setAmountDiv">
+        <p>設定金額を入力してください。設定金額以上を引くことはできません。</p>
+        <input type="number" id="setAmount" min="800" max="64000">
+        <button id="btn">設定確定</button>
+    </div>
 </div>
 
 <!-- JavaScriptファイルの読み込み -->

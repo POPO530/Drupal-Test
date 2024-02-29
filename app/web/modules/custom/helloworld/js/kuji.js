@@ -7,6 +7,7 @@
       let drawResult = []; // 引いたくじの結果
       let revealed = []; // 明かされたくじのインデックス
       let remainingTickets = 80; // 残りのくじ数
+      let setAmount = 0; // 設定金額を初期化
       let totalAmount = 0; // 使用金額を初期化
       let ticketPrice = 800; // 1枚あたりのくじの価格
       // 各賞品の数
@@ -57,6 +58,15 @@
       if (isNaN(selectedCount) || selectedCount < 1 || selectedCount > 10) {
         alert("1枚から10枚の間で選んでください。");
         return;
+      }
+      // totalAmountが0でない場合かつtotalAmountがsetAmount以上の場合。
+      // selectedCount * ticketPriceがsetAmount以上の場合。
+      // selectedCount * ticketPrice + totalAmountがsetAmount以上の場合。
+      // いずれかの条件が成立した場合、アラートが表示され、処理が中断されます。
+      setAmount = parseInt($('#setAmount', context).val(), 10);
+      if (totalAmount !== 0 && totalAmount >= setAmount || (selectedCount * ticketPrice) >= setAmount || (selectedCount * ticketPrice + totalAmount) >= setAmount) {
+          alert("設定金額以上です！");
+          return;
       }
       // 引いたくじの結果を格納する配列と、明かされたくじのインデックスを格納する配列を初期化します。
       drawResult = [];
@@ -194,6 +204,14 @@
       if (context === document) {
         resetGame(); // これにより、ページ全体が初めてロードされたときにのみresetGameが実行されます。
       }
+
+      // IDがbtnの要素がクリックされたら実行する
+      $('#btn').click(function() {
+        // IDがsetAmountのinput要素を変更できなくする
+        $('#setAmount').prop('disabled', true);
+        // IDがbtnの要素を再度クリックできなくする
+        $(this).off('click');
+      });
 
       // イベントリスナーを設定
       // 「ゲームをリセットする」ボタンに対して、クリックイベントリスナーを設定します。このイベントは、指定された関数（resetGame）を実行します。
