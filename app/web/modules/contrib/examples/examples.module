@@ -2,15 +2,13 @@
 
 /**
  * @file
- * Module file for Examples for Developers.
- *
- * This file serves as a stub file for the many Examples modules in the
- * @link http://drupal.org/project/examples Examples for Developers Project @endlink
- * which you can download and experiment with.
- *
- * One might say that examples.module is an example of documentation. However,
- * note that the example submodules define many doxygen groups, which may or
- * may not be a good strategy for other modules.
+ * 開発者向けの例のためのモジュールファイル。
+ * このファイルは、@link http://drupal.org/project/examples Examples for Developers Project @endlink
+ * にある多くの例のモジュールのスタブファイルとして機能します。
+ * これらのモジュールはダウンロードして実験することができます。
+ * examples.module は、ドキュメントの例と言えるかもしれません。ただし、
+ * 例のサブモジュールでは多くの Doxygen グループが定義されていることに注意してください。
+ * これは他のモジュールにとって適切な戦略であるかどうかは、また別の問題です。
  */
 
 use Drupal\Component\Utility\Html;
@@ -19,35 +17,32 @@ use Drupal\Core\Url;
 /**
  * @defgroup examples Examples
  * @{
- * Well-documented API examples for a broad range of Drupal core functionality.
- *
- * Developers can learn how to use a particular API quickly by experimenting
- * with the examples, and adapt them for their own use.
- *
- * Download the Examples for Developers Project (and participate with
- * submissions, bug reports, patches, and documentation) at
+ * 幅広いDrupalコア機能のための十分に文書化されたAPIの例。
+ * 開発者は、例を実験して素早く特定のAPIの使用方法を学ぶことができ、
+ * 自分の利用に適応させることができます。
+ * Examples for Developers Projectをダウンロードして（提出、バグレポート、パッチ、ドキュメントで参加してください）
  * http://drupal.org/project/examples
  */
 
 /**
- * Implements hook_toolbar().
+ * hook_toolbar() を実装します。
  */
 function examples_toolbar() {
-  // First, build an array of all example modules and their routes.
-  // We resort to this hard-coded way so as not to muck up each example.
+  // まず、すべての例のモジュールとそれらのルートの配列を構築します。
+  // 各例を汚さないように、このハードコーディングされた方法に頼ります。
   $examples = _examples_toolbar_routes();
 
-  // Build a list of links for the menu.
+  // メニューのリンクのリストを構築します。
   $links = [];
   foreach ($examples as $module => $route) {
 
-    // Check if module is installed or not.
+    // モジュールがインストールされているかどうかを確認します。
     if (\Drupal::moduleHandler()->moduleExists($module)) {
 
-      // Get the module info (title, description) from Drupal.
+      // Drupalからモジュールの情報（タイトル、説明）を取得します。
       $info = \Drupal::service('extension.list.module')->getExtensionInfo($module);
 
-      // If there's no info, the example isn't enabled, so don't display it.
+      // 情報がない場合、例が有効になっていないため、表示しません。
       if (!empty($info)) {
         $links[$module] = [
           'title' => Html::escape($info['name']),
@@ -105,14 +100,10 @@ function examples_toolbar() {
 }
 
 /**
- * Get a list of toolbar links for testing toolbar routes.
- *
- * This function returns a keyed array of toolbar routes with keys as the
- * module name which supplies the route. For internal use only.
- *
+ * ツールバールのルートをテストするためのツールバーのリンクのリストを取得します。
+ * この関数は、キーをルートを提供するモジュール名とし、ツールバーのルートのキー付き配列を返します。内部でのみ使用されます。
  * @return string[]
- *   Keyed array of toolbar routes.
- *
+ *   ツールバーのルートのキー付き配列。
  * @see toolbar_menu()
  */
 function _examples_toolbar_routes() {
@@ -151,5 +142,5 @@ function _examples_toolbar_routes() {
 }
 
 /**
- * @} End of 'defgroup examples'.
+ * @} 'defgroup examples' の終わり。
  */

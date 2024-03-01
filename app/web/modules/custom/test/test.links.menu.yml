@@ -1,0 +1,11 @@
+test.email:
+  
+  title: 'Test Email'
+  
+  route_name: test.email_form
+  
+  parent: system.admin_structure
+  
+  description: "Emailテスト"
+  
+  expanded: TRUE

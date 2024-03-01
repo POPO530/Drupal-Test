@@ -1,0 +1,7 @@
+test.email_form:
+  path: '/test/email'
+  defaults:
+    _form: '\Drupal\test\Form\EmailForm'
+    _title: 'メールフォーム'
+  requirements:
+    _permission: 'access content'

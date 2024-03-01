@@ -1,0 +1,99 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
+
+function test_toolbar() {
+  $modules = _test_toolbar_routes();
+
+  $links = [];
+  foreach ($modules as $module => $route) {
+    if (\Drupal::moduleHandler()->moduleExists($module)) {
+      $info = \Drupal::service('extension.list.module')->getExtensionInfo($module);
+      if (!empty($info)) {
+        $links[$module] = [
+          'title' => Html::escape($info['name']),
+          'url' => Url::fromRoute($route),
+          'attributes' => [
+            'class' => [Html::getClass($module)],
+            'title' => Html::escape($info['description']),
+          ],
+        ];
+      }
+    }
+  }
+
+  $links['test.email_form'] = [
+    'title' => t('Email Page'),
+    'url' => Url::fromRoute('test.email_form'),
+  ];
+
+  $links['helloworld.hello'] = [
+    'title' => t('HelloWorld Page'),
+    'url' => Url::fromRoute('helloworld.hello'),
+  ];
+
+  $links['helloworld.kuji'] = [
+    'title' => t('HelloWorld Kuji Page'),
+    'url' => Url::fromRoute('helloworld.kuji'),
+  ];
+
+  $items['test_toolbar'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Test Toolbar'),
+      '#url' => Url::fromRoute('<front>'),
+      '#attributes' => [
+        'title' => t('Test Toolbar'),
+      ],
+    ],
+    'tray' => [
+      '#heading' => t('Test Toolbar'),
+      'shortcuts' => [
+        '#theme' => 'links__toolbar_test',
+        '#links' => $links,
+        '#attributes' => [
+          'class' => ['toolbar-menu'],
+        ],
+      ],
+    ],
+    '#weight' => 99,
+  ];
+
+  return $items;
+}
+
+function _test_toolbar_routes() {
+  return [
+    'test.email_form' => 'test.email_form',
+    'helloworld.hello' => 'helloworld.hello',
+    'helloworld.kuji' => 'helloworld.kuji',
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ * 
+ * Drupalのhook_mail()の実装例です。このフックは、メール送信時にメールの構成を定義するために使用されます。
+ * この関数は、特定のメール（ここでは'contact_message'）が送信される際にDrupalによって呼び出されます。
+ */
+function test_mail($key, &$message, $params) {
+    // メッセージの言語コードを設定
+    $options = [
+      'langcode' => $message['langcode'],
+    ];
+
+    // $paramsをオブジェクトに変換
+    $params = (object) $params;
+
+    switch ($key) {
+        case 'contact_message':
+            // メッセージのfrom、subject、bodyを設定
+            $message['from'] = \Drupal::config('system.site')->get('mail');
+            $message['subject'] = !empty($params->subject) ? $params->subject : t('Contact message');
+            // Html::escapeを使用して本文をエスケープする
+            $message['body'][] = !empty($params->message) ? Html::escape($params->message) : t('No message provided.');
+            break;
+    }
+}
