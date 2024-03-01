@@ -1,7 +1,15 @@
 test.email_form:
   path: '/test/email'
   defaults:
-    _form: '\Drupal\test\Form\EmailForm'
-    _title: 'メールフォーム'
+    _form: '\Drupal\test\Form\EmailForm'  # メールフォームを処理するフォームクラス
+    _title: 'メールフォーム'  # ページのタイトル
   requirements:
-    _permission: 'access content'
+    _permission: 'access content'  # このページにアクセスするための権限
+
+test.ajax_response:
+  path: '/test/ajax'  # AJAXリクエストを処理するパス
+  defaults:
+    _controller: '\Drupal\test\Controller\AjaxController::myAjaxFunction'  # AJAXリクエストを処理するコントローラー
+  methods:  [POST]  # 許可されるHTTPメソッド
+  requirements:
+    _permission: 'access content'  # このエンドポイントにアクセスするための権限

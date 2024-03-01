@@ -3,14 +3,25 @@
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 
+/**
+ * カスタムツールバーを定義する関数。
+ *
+ * @return array
+ *   ツールバー項目の配列を返します。
+ */
 function test_toolbar() {
+  // 利用可能なルートを取得
   $modules = _test_toolbar_routes();
 
+  // 各モジュールに対してリンクを構築
   $links = [];
   foreach ($modules as $module => $route) {
+    // モジュールが存在する場合
     if (\Drupal::moduleHandler()->moduleExists($module)) {
+      // モジュール情報を取得
       $info = \Drupal::service('extension.list.module')->getExtensionInfo($module);
       if (!empty($info)) {
+        // リンク配列に情報を追加
         $links[$module] = [
           'title' => Html::escape($info['name']),
           'url' => Url::fromRoute($route),
@@ -23,21 +34,18 @@ function test_toolbar() {
     }
   }
 
+  // 追加のリンクを定義
+  $links['test.ajax_response'] = [
+    'title' => t('Ajax Page'),
+    'url' => Url::fromRoute('test.ajax_response'),
+  ];
+
   $links['test.email_form'] = [
     'title' => t('Email Page'),
     'url' => Url::fromRoute('test.email_form'),
   ];
 
-  $links['helloworld.hello'] = [
-    'title' => t('HelloWorld Page'),
-    'url' => Url::fromRoute('helloworld.hello'),
-  ];
-
-  $links['helloworld.kuji'] = [
-    'title' => t('HelloWorld Kuji Page'),
-    'url' => Url::fromRoute('helloworld.kuji'),
-  ];
-
+  // ツールバー項目を定義
   $items['test_toolbar'] = [
     '#type' => 'toolbar_item',
     'tab' => [
@@ -64,8 +72,15 @@ function test_toolbar() {
   return $items;
 }
 
+/**
+ * 利用可能なルートを定義する補助関数。
+ *
+ * @return array
+ *   モジュール名とルート名の対応関係を返します。
+ */
 function _test_toolbar_routes() {
   return [
+    'test.ajax_response' => 'test.ajax_response',
     'test.email_form' => 'test.email_form',
     'helloworld.hello' => 'helloworld.hello',
     'helloworld.kuji' => 'helloworld.kuji',
@@ -73,27 +88,50 @@ function _test_toolbar_routes() {
 }
 
 /**
- * Implements hook_mail().
- * 
- * Drupalのhook_mail()の実装例です。このフックは、メール送信時にメールの構成を定義するために使用されます。
- * この関数は、特定のメール（ここでは'contact_message'）が送信される際にDrupalによって呼び出されます。
+ * Drupalのhook_mail()を実装する例。
+ *
+ * @param $key
+ *   メールの識別子。
+ * @param $message
+ *   メールの構成要素を含む配列。
+ * @param $params
+ *   メール送信時に追加されるパラメータ。
  */
 function test_mail($key, &$message, $params) {
-    // メッセージの言語コードを設定
     $options = [
       'langcode' => $message['langcode'],
     ];
 
-    // $paramsをオブジェクトに変換
     $params = (object) $params;
 
     switch ($key) {
         case 'contact_message':
-            // メッセージのfrom、subject、bodyを設定
             $message['from'] = \Drupal::config('system.site')->get('mail');
             $message['subject'] = !empty($params->subject) ? $params->subject : t('Contact message');
-            // Html::escapeを使用して本文をエスケープする
             $message['body'][] = !empty($params->message) ? Html::escape($params->message) : t('No message provided.');
             break;
     }
+}
+
+/**
+ * テーマフックを実装します。
+ *
+ * @param $existing
+ *   既存のテーマ情報の配列。
+ * @param $type
+ *   テーマまたはモジュールのタイプ。
+ * @param $theme
+ *   テーマの名前。
+ * @param $path
+ *   テーマまたはモジュールのパス。
+ *
+ * @return array
+ *   テーマフックとそのテンプレートに関する情報の配列。
+ */
+function test_theme($existing, $type, $theme, $path) {
+  return [
+    'test_block_template' => [
+      'variables' => [],
+    ],
+  ];
 }
