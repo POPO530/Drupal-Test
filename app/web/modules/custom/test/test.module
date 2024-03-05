@@ -35,11 +35,6 @@ function test_toolbar() {
   }
 
   // 追加のリンクを定義
-  $links['test.ajax_response'] = [
-    'title' => t('Ajax Page'),
-    'url' => Url::fromRoute('test.ajax_response'),
-  ];
-
   $links['test.email_form'] = [
     'title' => t('Email Page'),
     'url' => Url::fromRoute('test.email_form'),
@@ -100,7 +95,6 @@ function test_toolbar() {
  */
 function _test_toolbar_routes() {
   return [
-    'test.ajax_response' => 'test.ajax_response',
     'test.email_form' => 'test.email_form',
     'helloworld.hello' => 'helloworld.hello',
     'helloworld.kuji' => 'helloworld.kuji',
