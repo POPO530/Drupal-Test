@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function test_schema() {
+  $schema['survey_results'] = [
+    'description' => 'Stores results of surveys.',
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for a survey result.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Name of the person.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'answer1' => [
+        'description' => 'Answer to question 1.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'answer2' => [
+        'description' => 'Answer to question 2.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'answer3' => [
+        'description' => 'Answer to question 3.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'answer4' => [
+        'description' => 'Answer to question 4.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'answer5' => [
+        'description' => 'Answer to question 5.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}

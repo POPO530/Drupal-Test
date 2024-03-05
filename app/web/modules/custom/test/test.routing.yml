@@ -13,3 +13,19 @@ test.ajax_response:
   methods:  [POST]  # 許可されるHTTPメソッド
   requirements:
     _permission: 'access content'  # このエンドポイントにアクセスするための権限
+
+test.survey_form:
+  path: '/survey/form'
+  defaults:
+    _form: '\Drupal\test\Form\SurveyForm'
+    _title: 'Survey Form'
+  requirements:
+    _permission: 'access content'
+
+test.survey_results:
+  path: '/admin/structure/survey-results'
+  defaults:
+    _controller: '\Drupal\test\Controller\SurveyResultsController::content'
+    _title: 'Survey Results'
+  requirements:
+    _permission: 'access content'

@@ -45,6 +45,26 @@ function test_toolbar() {
     'url' => Url::fromRoute('test.email_form'),
   ];
 
+  $links['helloworld.hello'] = [
+    'title' => t('Hello Page'),
+    'url' => Url::fromRoute('helloworld.hello'),
+  ];
+
+  $links['helloworld.kuji'] = [
+    'title' => t('Kuji Page'),
+    'url' => Url::fromRoute('helloworld.kuji'),
+  ];
+
+  $links['test.survey_form'] = [
+    'title' => t('Survey Page'),
+    'url' => Url::fromRoute('test.survey_form'),
+  ];
+
+  $links['test.survey_results'] = [
+    'title' => t('Results Page'),
+    'url' => Url::fromRoute('test.survey_results'),
+  ];
+
   // ツールバー項目を定義
   $items['test_toolbar'] = [
     '#type' => 'toolbar_item',
@@ -84,6 +104,8 @@ function _test_toolbar_routes() {
     'test.email_form' => 'test.email_form',
     'helloworld.hello' => 'helloworld.hello',
     'helloworld.kuji' => 'helloworld.kuji',
+    'test.survey_form' => 'test.survey_form',
+    'test.survey_results' => 'test.survey_results',
   ];
 }
 
